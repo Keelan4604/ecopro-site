@@ -1,0 +1,50 @@
+{
+  "categories": [
+    {
+      "id": "generic-products",
+      "name": "Generic Products",
+      "slug": "generic-products",
+      "description": "Core EcoPro product lines",
+      "subcategories": []
+    },
+    {
+      "id": "machine-specific",
+      "name": "Machine Specific",
+      "slug": "machine-specific",
+      "description": "Machine-specific kits, parts, and filters",
+      "subcategories": [
+        { "id": "turboii-hd", "name": "Turbo II HD", "slug": "turboii-hd" },
+        { "id": "turboii-hd-parts", "name": "Turbo II HD Parts", "slug": "turboii-hd-parts" },
+        { "id": "ccap", "name": "Clean Cabin Air Pressurizer", "slug": "ccap" },
+        { "id": "ccap-filters", "name": "CCAP Filters", "slug": "ccap-filters" },
+        { "id": "ccap-parts", "name": "CCAP Parts", "slug": "ccap-parts" },
+        { "id": "ez3-kits", "name": "EZ3 Kits", "slug": "ez3-kits" }
+      ]
+    },
+    {
+      "id": "adapters",
+      "name": "Adapters",
+      "slug": "adapters",
+      "description": "Metal Stack Extensions (MSE) and Metal Expansion Adapters (MEA)",
+      "subcategories": []
+    },
+    {
+      "id": "lights",
+      "name": "Lights",
+      "slug": "lights",
+      "description": "LED work lights, beacons, and upgrade kits",
+      "subcategories": [
+        { "id": "work-lights", "name": "Work Lights", "slug": "work-lights" },
+        { "id": "beacons", "name": "Beacons", "slug": "beacons" },
+        { "id": "led-upgrade-kits", "name": "LED Upgrade Kits", "slug": "led-upgrade-kits" }
+      ]
+    },
+    {
+      "id": "jump-starters",
+      "name": "Jump Starters",
+      "slug": "jump-starters",
+      "description": "Heavy-duty portable jump starters with Rapid Recharge Technology",
+      "subcategories": []
+    }
+  ]
+}

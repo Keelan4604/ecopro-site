@@ -1,0 +1,38 @@
+{
+  "name": "EcoPro USA",
+  "legalName": "EcoPro Corp",
+  "tagline": "Exceptional Solutions for Fleet",
+  "description": "Independently owned and operated. Proven products for heavy equipment — made in the USA.",
+  "founded": "1980s",
+  "address": {
+    "street": "2443 W 12th St",
+    "city": "Tempe",
+    "state": "AZ",
+    "zip": "85281",
+    "googleMapsUrl": "https://www.google.com/maps/place/2443+W+12th+St,+Tempe,+AZ+85281/"
+  },
+  "phone": "855-ECO-PRO2",
+  "phoneTel": "8553267762",
+  "fax": "480-584-4627",
+  "emails": {
+    "primary": "controller@ecoprousa.com",
+    "sales": "sales@ecoprousa.com",
+    "technical": "technical@ecoprousa.com",
+    "customerService": "customerservice@ecoprousa.com",
+    "accounting": "accounting@ecoprousa.com"
+  },
+  "website": "https://ecoprousa.com",
+  "values": [
+    "Safe and proven technology",
+    "Will not void warranty",
+    "Verified products",
+    "High return on investment",
+    "Sizes for all equipment",
+    "Strong customer service",
+    "Installation available",
+    "Made in the USA",
+    "Independently owned and operated",
+    "Not a manufacturer's rep",
+    "Positive environmental impact"
+  ]
+}

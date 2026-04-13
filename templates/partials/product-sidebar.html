@@ -1,0 +1,16 @@
+<aside class="product-sidebar">
+  <h3 class="sidebar-title">Products</h3>
+  {{#each productMenu}}
+  <div class="sidebar-group">
+    <a href="{{url}}" class="sidebar-group-heading{{#if active}} active{{/if}}">{{label}}</a>
+    {{#if subcategories}}
+    <ul class="sidebar-sublist">
+      {{#each subcategories}}
+      <li><a href="{{url}}"{{#if active}} class="active"{{/if}}>{{label}}</a></li>
+      {{/each}}
+    </ul>
+    {{/if}}
+  </div>
+  {{#unless @last}}<hr class="sidebar-divider">{{/unless}}
+  {{/each}}
+</aside>

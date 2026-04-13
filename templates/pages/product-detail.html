@@ -1,0 +1,133 @@
+{{> page-hero}}
+
+<!-- PRODUCT DETAIL WITH SIDEBAR -->
+<section class="section product-detail">
+  <div class="container">
+    <div class="product-page-layout">
+      {{> product-sidebar}}
+      <div>
+        <div class="product-detail-grid">
+          <div class="product-detail-img reveal">
+            <img src="{{productImage}}" alt="{{product.name}}" loading="lazy" id="product-main-img">
+            {{#if hasGallery}}
+            <div class="product-gallery">
+              {{#each product.images.gallery}}
+              <button class="gallery-thumb" data-src="{{this}}">
+                <img src="{{this}}" alt="Gallery image" loading="lazy">
+              </button>
+              {{/each}}
+            </div>
+            {{/if}}
+          </div>
+          <div class="product-detail-body reveal">
+            <nav class="product-breadcrumb" aria-label="Breadcrumb">
+              <a href="{{rootPath}}products/">Products</a>
+              <span class="breadcrumb-sep">/</span>
+              <a href="{{categoryUrl}}">{{product.category}}</a>
+              {{#if product.subcategory}}
+              <span class="breadcrumb-sep">/</span>
+              <a href="{{subcategoryUrl}}">{{product.subcategory}}</a>
+              {{/if}}
+            </nav>
+            <p class="section-eyebrow">{{product.category}}</p>
+            <h2 class="section-title">{{product.name}}</h2>
+            {{#if product.sku}}
+            <p class="product-sku">SKU: {{product.sku}}</p>
+            {{/if}}
+            {{#if product.shortDescription}}
+            <p class="product-short-desc">{{product.shortDescription}}</p>
+            {{/if}}
+
+            {{#if product.tags}}
+            <div class="product-tags">
+              <p class="product-tags-label">Compatible Equipment:</p>
+              <div class="product-tags-list">
+                {{#each product.tags}}
+                <span class="product-tag">{{this}}</span>
+                {{/each}}
+              </div>
+            </div>
+            {{/if}}
+
+            <div class="product-tabs">
+              <div class="tab-nav">
+                {{#if tabDescription}}
+                <button class="tab-btn active" data-tab="{{product.slug}}-desc">Description</button>
+                {{/if}}
+                {{#if tabInstallation}}
+                <button class="tab-btn" data-tab="{{product.slug}}-install">Installation</button>
+                {{/if}}
+                {{#if tabMaintenance}}
+                <button class="tab-btn" data-tab="{{product.slug}}-maint">Maintenance</button>
+                {{/if}}
+                {{#if tabWarranty}}
+                <button class="tab-btn" data-tab="{{product.slug}}-warranty">Warranty</button>
+                {{/if}}
+                {{#if tabPdfs}}
+                <button class="tab-btn" data-tab="{{product.slug}}-pdfs">PDFs &amp; Videos</button>
+                {{/if}}
+              </div>
+              {{#if tabDescription}}
+              <div class="tab-panel active" id="{{product.slug}}-desc">
+                {{{descriptionHtml}}}
+              </div>
+              {{/if}}
+              {{#if tabInstallation}}
+              <div class="tab-panel" id="{{product.slug}}-install">
+                {{{installationHtml}}}
+              </div>
+              {{/if}}
+              {{#if tabMaintenance}}
+              <div class="tab-panel" id="{{product.slug}}-maint">
+                {{{maintenanceHtml}}}
+              </div>
+              {{/if}}
+              {{#if tabWarranty}}
+              <div class="tab-panel" id="{{product.slug}}-warranty">
+                {{{warrantyHtml}}}
+              </div>
+              {{/if}}
+              {{#if tabPdfs}}
+              <div class="tab-panel" id="{{product.slug}}-pdfs">
+                {{{pdfsHtml}}}
+              </div>
+              {{/if}}
+            </div>
+
+            <div class="product-actions">
+              <a href="{{rootPath}}where-to-buy/" class="btn btn-primary btn-lg">Request a Quote</a>
+              <a href="tel:8553267762" class="btn btn-outline btn-lg">Call 855-ECO-PRO2</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- RELATED PRODUCTS -->
+        {{#if relatedProducts}}
+        <div style="margin-top:var(--space-3xl)">
+          <div class="section-header reveal">
+            <p class="section-eyebrow">Related Products</p>
+            <h2 class="section-title">You May Also Need</h2>
+          </div>
+          <div class="product-listing-grid">
+            {{#each relatedProducts}}
+            <a href="{{url}}" class="product-listing-card reveal">
+              <div class="product-listing-card-img">
+                <img src="{{image}}" alt="{{name}}" loading="lazy">
+              </div>
+              <div class="product-listing-card-body">
+                <h3>{{name}}</h3>
+                <p>{{shortDescription}}</p>
+                <span class="btn btn-secondary btn-sm">View Product</span>
+              </div>
+            </a>
+            {{/each}}
+          </div>
+        </div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+{{> cta-band}}

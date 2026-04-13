@@ -1,0 +1,32 @@
+{{> page-hero}}
+
+<section class="section">
+  <div class="container">
+    <div class="product-page-layout">
+      {{> product-sidebar}}
+      <div class="product-listing-main">
+        <h2 class="section-title" style="margin-bottom:var(--space-xs)">{{categoryName}}</h2>
+        {{#if categoryDescription}}
+        <p class="section-sub" style="margin-bottom:var(--space-lg)">{{categoryDescription}}</p>
+        {{/if}}
+        <p class="product-count">{{productCount}} product{{#if productCountPlural}}s{{/if}}</p>
+        <div class="product-listing-grid">
+          {{#each categoryProducts}}
+          <a href="{{url}}" class="product-listing-card reveal">
+            <div class="product-listing-card-img">
+              <img src="{{image}}" alt="{{name}}" loading="lazy">
+            </div>
+            <div class="product-listing-card-body">
+              <h3>{{name}}</h3>
+              <p>{{shortDescription}}</p>
+              <span class="btn btn-secondary btn-sm">View Product</span>
+            </div>
+          </a>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{> cta-band}}

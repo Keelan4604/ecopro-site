@@ -1,0 +1,16 @@
+name = "ecopro-contact-form"
+main = "src/index.js"
+compatibility_date = "2024-09-01"
+
+[vars]
+ALLOWED_ORIGIN = "https://ecoprousa.com"
+FROM_EMAIL = "noreply@ecoprousa.com"
+FROM_NAME = "EcoPro USA Website"
+
+# Uncomment and configure after deploying:
+# [[kv_namespaces]]
+# binding = "SUBMISSIONS"
+# id = "<your-kv-namespace-id>"
+
+# Add these secrets via `wrangler secret put`:
+# RESEND_API_KEY — Resend.com API key for sending emails

@@ -1,0 +1,71 @@
+{
+  "mainNav": [
+    { "label": "Home", "url": "/", "id": "home" },
+    { "label": "About", "url": "/about/", "id": "about" },
+    { "label": "Products", "url": "/products/", "id": "products", "hasDropdown": true },
+    { "label": "Where to Buy", "url": "/where-to-buy/", "id": "where-to-buy" },
+    { "label": "Results", "url": "/results/", "id": "results" },
+    { "label": "Tech Corner", "url": "/techcorner/", "id": "techcorner" },
+    { "label": "Contact", "url": "/contact/", "id": "contact" }
+  ],
+  "ctaButton": {
+    "label": "Get a Quote",
+    "url": "/contact/"
+  },
+  "productMenu": [
+    {
+      "label": "Turbo II HD",
+      "url": "/products/turbo-ii-hd/",
+      "subcategories": [
+        { "label": "Kits for Equipment", "url": "/products/turbo-ii-hd/kits/" },
+        { "label": "Parts", "url": "/products/turbo-ii-hd/parts/" }
+      ]
+    },
+    {
+      "label": "Clean Cabin Air Pressurizer (CCAP)",
+      "url": "/products/ccap/",
+      "subcategories": [
+        { "label": "Kits for Equipment", "url": "/products/ccap/kits/" },
+        { "label": "Filters", "url": "/products/ccap/filters/" },
+        { "label": "Parts", "url": "/products/ccap/parts/" }
+      ]
+    },
+    {
+      "label": "Lights",
+      "url": "/products/lights/",
+      "subcategories": [
+        { "label": "Work Lights", "url": "/products/lights/work-lights/" },
+        { "label": "Beacons", "url": "/products/lights/beacons/" },
+        { "label": "Safety Lights", "url": "/products/lights/safety-lights/" },
+        { "label": "LED Upgrade Kits", "url": "/products/lights/led-upgrade-kits/" }
+      ]
+    },
+    {
+      "label": "Jump Starters",
+      "url": "/products/jump-starters/",
+      "subcategories": []
+    },
+    {
+      "label": "Desiccant Breathers",
+      "url": "/products/desiccant-breathers/",
+      "subcategories": []
+    },
+    {
+      "label": "Adapters",
+      "url": "/products/adapters/",
+      "subcategories": [
+        { "label": "Metal Adapters", "url": "/products/adapters/metal/" },
+        { "label": "Rubber Adapters", "url": "/products/adapters/rubber/" },
+        { "label": "HVAC Access Doors", "url": "/products/adapters/hvac-doors/" }
+      ]
+    },
+    {
+      "label": "EZ3 Kits",
+      "url": "/products/ez3-kits/",
+      "subcategories": [
+        { "label": "Overview and Benefits", "url": "/products/ez3-kits/" },
+        { "label": "Kits for Equipment", "url": "/products/ez3-kits/kits/" }
+      ]
+    }
+  ]
+}

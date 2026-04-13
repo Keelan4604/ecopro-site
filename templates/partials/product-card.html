@@ -1,0 +1,17 @@
+<div class="product-card reveal">
+  <div class="product-img">
+    <img src="{{image}}" alt="{{name}}" loading="lazy">
+  </div>
+  <div class="product-body">
+    <h3 class="product-name">{{name}}</h3>
+    <p class="product-desc">{{shortDescription}}</p>
+    {{#if highlights}}
+    <ul class="product-highlights">
+      {{#each highlights}}
+      <li>{{this}}</li>
+      {{/each}}
+    </ul>
+    {{/if}}
+    <a href="{{url}}" class="btn btn-secondary">Learn More</a>
+  </div>
+</div>

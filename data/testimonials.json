@@ -1,0 +1,60 @@
+{
+  "caseStudies": [
+    {
+      "id": "turbo-ii-recycling-michigan",
+      "product": "Turbo II HD",
+      "headline": "$12,000/Year Saved in Engine Air Filters",
+      "detail": "A recycling facility in Michigan went from 12 engine air filters per month to just 2 — saving $12,000 annually — after installing Turbo II HD PreCleaners.",
+      "source": "Recycling Facility, Michigan"
+    },
+    {
+      "id": "ccap-d6t-massachusetts",
+      "product": "CCAP",
+      "headline": "25,000 Hours on a D6T Dozer",
+      "detail": "A cabin air pressurizer on a D6T dozer at a Massachusetts municipality landfill reached 25,000 hours of operation — proving long-term reliability in demanding conditions.",
+      "source": "Massachusetts Municipality Landfill"
+    },
+    {
+      "id": "ccap-hvac-arizona",
+      "product": "CCAP",
+      "headline": "Clean HVAC After 3 Years",
+      "detail": "After 3 years of continuous use at an Arizona landfill, the HVAC system remained clean — demonstrating the pressurizer's ability to keep contaminants out of the cab.",
+      "source": "Arizona Landfill"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "charlie-s",
+      "quote": "If you are looking for awesome, knowledgeable people to work with, these are the guys I highly recommend.",
+      "author": "Charlie S., CEO",
+      "company": "Hunter Contracting"
+    },
+    {
+      "id": "fleet-manager-tn",
+      "quote": "Thank you so much for your help and time. You have amazing customer service.",
+      "author": "Fleet Manager",
+      "company": "Tennessee Waste Industry"
+    },
+    {
+      "id": "aaron-z",
+      "quote": "Man they were bright and very simple. Just plug and go — believe I have another machine that we will be installing these on here soon!",
+      "author": "Aaron Z.",
+      "company": "Field Operations"
+    },
+    {
+      "id": "ops-manager-indiana",
+      "quote": "Operators clearly notice cleaner cabin air. The difference is unmistakable — especially in dusty landfill conditions.",
+      "author": "Operations Manager",
+      "company": "Indiana Landfill"
+    }
+  ],
+  "clients": [
+    { "name": "US Air Force", "logo": "images/clients/c1.jpg" },
+    { "name": "Argonaut Gold", "logo": "images/clients/c2.jpg" },
+    { "name": "Salt River Landfill", "logo": "images/clients/c3.jpg" },
+    { "name": "RDO Equipment Co", "logo": "images/clients/c5.jpg" },
+    { "name": "Hunter Contracting", "logo": "images/clients/c9.jpg" },
+    { "name": "Aggregate Industries", "logo": "images/clients/c6.jpg" },
+    { "name": "Mustang Cat", "logo": "images/clients/testimonial-3-logo-mustang.jpg" }
+  ]
+}

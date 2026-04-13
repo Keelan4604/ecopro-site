@@ -1,0 +1,12 @@
+<section class="section cta-band"{{#if ctaId}} id="{{ctaId}}"{{/if}}>
+  <div class="container cta-inner">
+    <div class="cta-text reveal">
+      <h2 class="cta-headline">{{ctaHeadline}}</h2>
+      <p class="cta-sub">{{ctaSub}}</p>
+    </div>
+    <div class="cta-actions reveal">
+      {{#if ctaPrimaryUrl}}<a href="{{ctaPrimaryUrl}}" class="btn btn-primary btn-lg">{{ctaPrimaryLabel}}</a>{{/if}}
+      {{#if ctaSecondaryUrl}}<a href="{{ctaSecondaryUrl}}" class="btn btn-outline-light btn-lg">{{ctaSecondaryLabel}}</a>{{/if}}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,199 @@
+<!-- ========== HERO ========== -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="hero-slide active" style="background-image:url('{{rootPath}}images/hero/slide-1-bg.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('{{rootPath}}images/hero/slidd-2-bg.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('{{rootPath}}images/hero/slide-3-bg.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('{{rootPath}}images/hero/our-products.jpg')"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <div class="hero-text">
+      <p class="hero-eyebrow reveal">Trusted by Fleets Nationwide</p>
+      <h1 class="hero-headline reveal">Cleaner Air.<br>Longer Life.<br><span class="text-accent">Proven Performance.</span></h1>
+      <p class="hero-sub reveal">Industrial-grade filtration, lighting, and protection products that reduce costs, extend equipment life, and keep operators safe — without voiding a single warranty.</p>
+      <div class="hero-ctas reveal">
+        <a href="{{rootPath}}products/" class="btn btn-primary btn-lg">Explore Products</a>
+        <a href="{{rootPath}}contact/" class="btn btn-outline btn-lg">Contact EcoPro</a>
+      </div>
+    </div>
+    <div class="hero-stats reveal">
+      <div class="stat-chip">
+        <span class="stat-number" data-target="12000" data-prefix="$">$0</span>
+        <span class="stat-label">Avg. Annual Savings</span>
+      </div>
+      <div class="stat-chip">
+        <span class="stat-number" data-target="25000">0</span>
+        <span class="stat-label">Hours Proven</span>
+      </div>
+      <div class="stat-chip">
+        <span class="stat-number" data-target="40" data-suffix="+">0</span>
+        <span class="stat-label">Years on the Market</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <span></span>
+  </div>
+</section>
+
+<!-- ========== TRUSTED BY (top bar) ========== -->
+<section style="padding:var(--space-xl) 0;background:var(--color-off-white)">
+  <div class="container" style="text-align:center">
+    <p style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-text-muted);margin-bottom:var(--space-md)">Trusted by Industry Leaders</p>
+    <div class="reveal" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:var(--space-xl);opacity:0.6">
+      {{#each clients}}
+      <img src="{{rootPath}}{{logo}}" alt="{{name}}" style="height:40px;object-fit:contain" loading="lazy">
+      {{/each}}
+    </div>
+  </div>
+</section>
+
+<!-- ========== WHAT WE DO ========== -->
+<section class="section what-we-do" id="about">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">What We Do</p>
+      <h2 class="section-title">Built for the People<br>Who Run the Equipment</h2>
+      <p class="section-sub">We're not a manufacturer's rep. We're an independent solutions company that works exclusively for the end user — selecting only the best, safest, and most proven products on the market.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card reveal">
+        <div class="pillar-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="2"/><path d="M16 24l6 6 10-12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="pillar-title">We Work for You — Not the Manufacturer</h3>
+        <p class="pillar-text">This is integral to who we are. We promote only the products we believe in — chosen for real-world performance, not brand loyalty. Your uptime and bottom line come first.</p>
+      </div>
+      <div class="pillar-card reveal">
+        <div class="pillar-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 4l5.18 10.5L40 16.27l-8 7.8 1.89 11.01L24 30.24l-9.89 4.84L16 24.07l-8-7.8 10.82-1.77z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="pillar-title">Nothing We Sell Will Void Warranties</h3>
+        <p class="pillar-text">Every product we carry is designed to integrate safely with your existing equipment. They reduce costs, improve efficiency, extend asset longevity, and support your sustainability initiatives.</p>
+      </div>
+      <div class="pillar-card reveal">
+        <div class="pillar-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 4C13 4 4 13 4 24s9 20 20 20 20-9 20-20S35 4 24 4z" stroke="currentColor" stroke-width="2"/><path d="M16 28c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="16" r="3" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <h3 class="pillar-title">Real Environmental Impact</h3>
+        <p class="pillar-text">Beyond cost savings, our products deliver reduced emissions, less waste, and extended asset life. Doing right by the environment and your fleet aren't mutually exclusive.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== WHY ECOPRO ========== -->
+<section class="section why-ecopro">
+  <div class="why-ecopro-bg" style="background-image:url('{{rootPath}}images/hero/our-products.jpg')"></div>
+  <div class="why-ecopro-overlay"></div>
+  <div class="container why-ecopro-inner">
+    <div class="why-text reveal">
+      <p class="section-eyebrow light">Why EcoPro</p>
+      <h2 class="section-title light">100% Tested.<br>100% Validated.<br>100% Proven.</h2>
+      <p class="why-description">Every product in our lineup has been rigorously tested and validated in the harshest real-world conditions. We stand behind what we sell — with start-to-finish support, from selection through installation.</p>
+      <a href="{{rootPath}}products/" class="btn btn-primary btn-lg">See Our Products</a>
+    </div>
+    <div class="why-badges reveal">
+      <ul class="badge-list">
+        {{#each company.values}}
+        <li class="badge-item"><span class="badge-icon">&#10003;</span> {{this}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FEATURED PRODUCTS ========== -->
+<section class="section products" id="products">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Featured Products</p>
+      <h2 class="section-title">Engineered for the<br>Toughest Environments</h2>
+      <p class="section-sub">From pre-cleaners that extend filter life 3–5x to cabin pressurizers delivering air 200x cleaner than competitors — these are products that earn their keep.</p>
+    </div>
+    <div class="products-grid">
+      {{#each featuredProducts}}
+      <div class="product-card reveal">
+        <div class="product-img">
+          <img src="{{image}}" alt="{{name}}" loading="lazy">
+        </div>
+        <div class="product-body">
+          <h3 class="product-name">{{name}}</h3>
+          <p class="product-desc">{{shortDescription}}</p>
+          {{#if highlights}}
+          <ul class="product-highlights">
+            {{#each highlights}}
+            <li>{{this}}</li>
+            {{/each}}
+          </ul>
+          {{/if}}
+          <a href="{{url}}" class="btn btn-secondary">Learn More</a>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</section>
+
+<!-- ========== RESULTS / TESTIMONIALS ========== -->
+<section class="section results" id="results">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Proven Results</p>
+      <h2 class="section-title">Real Outcomes from<br>Real Operations</h2>
+      <p class="section-sub">Don't take our word for it. Here's what happens when EcoPro products go to work.</p>
+    </div>
+    <div class="results-grid">
+      {{#each caseStudies}}
+      <div class="result-card result-case reveal">
+        <div class="result-tag">Case Study — {{product}}</div>
+        <h3 class="result-headline">{{headline}}</h3>
+        <p class="result-detail">{{detail}}</p>
+        <span class="result-source">{{source}}</span>
+      </div>
+      {{/each}}
+    </div>
+    <div class="testimonials-slider reveal" id="testimonials-slider">
+      <div class="testimonials-track">
+        {{#each testimonials}}
+        <div class="testimonial-card">
+          <blockquote class="testimonial-quote">"{{quote}}"</blockquote>
+          <div class="testimonial-author">
+            <strong>{{author}}</strong>
+            <span>{{company}}</span>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      <div class="slider-controls">
+        <button class="slider-btn slider-prev" aria-label="Previous testimonial">&#8592;</button>
+        <div class="slider-dots" id="slider-dots"></div>
+        <button class="slider-btn slider-next" aria-label="Next testimonial">&#8594;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TRUSTED BY (marquee) ========== -->
+<section class="section trusted">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Trusted By</p>
+      <h2 class="section-title">Proven Across Industries</h2>
+    </div>
+    <div class="logo-marquee reveal" aria-label="Customer logos">
+      <div class="marquee-track">
+        {{#each clients}}
+        <div class="marquee-item">{{name}}</div>
+        {{/each}}
+        {{#each clients}}
+        <div class="marquee-item">{{name}}</div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA BAND ========== -->
+{{> cta-band}}

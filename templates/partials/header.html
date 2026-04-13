@@ -1,0 +1,40 @@
+<header class="site-header{{#if headerScrolled}} scrolled{{/if}}" id="site-header">
+  <div class="container header-inner">
+    <a href="{{logoUrl}}" class="logo" aria-label="EcoPro USA Home">
+      <img src="{{rootPath}}images/logo/eco-pro-logo-300x73.png" alt="EcoPro USA" width="180" height="44">
+    </a>
+    <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        {{#each navItems}}
+        <li class="{{#if hasDropdown}}nav-has-dropdown{{/if}}">
+          <a href="{{url}}" class="nav-link{{#if active}} active{{/if}}">{{label}}</a>
+          {{#if hasDropdown}}
+          <div class="nav-dropdown" id="products-dropdown">
+            <div class="nav-dropdown-inner">
+              {{#each productMenu}}
+              <div class="nav-dropdown-col">
+                <a href="{{url}}" class="nav-dropdown-heading">{{label}}</a>
+                {{#if subcategories}}
+                <ul class="nav-dropdown-list">
+                  {{#each subcategories}}
+                  <li><a href="{{url}}">{{label}}</a></li>
+                  {{/each}}
+                </ul>
+                {{/if}}
+              </div>
+              {{/each}}
+            </div>
+          </div>
+          {{/if}}
+        </li>
+        {{/each}}
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="{{rootPath}}where-to-buy/" class="btn btn-primary btn-sm">Where to Buy</a>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+    </div>
+  </div>
+</header>

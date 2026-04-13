@@ -1,0 +1,105 @@
+{{> page-hero}}
+
+<!-- CASE STUDIES -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Case Studies</p>
+      <h2 class="section-title">Measurable Impact,<br>Documented Results</h2>
+    </div>
+    <div class="case-studies-grid">
+      {{#each caseStudies}}
+      <div class="case-card reveal">
+        <div class="case-tag">{{product}}</div>
+        <div class="case-stat">
+          <span class="case-stat-number">{{statNumber}}</span>
+          <span class="case-stat-label">{{statLabel}}</span>
+        </div>
+        <h3 class="case-title">{{title}}</h3>
+        <p class="case-desc">{{detail}}</p>
+        <div class="case-meta">
+          <span class="case-location">{{source}}</span>
+          <span class="case-product">{{product}}</span>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</section>
+
+<!-- BY THE NUMBERS -->
+<section class="section" style="background:var(--color-off-white)">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">By the Numbers</p>
+      <h2 class="section-title">The EcoPro Impact</h2>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-card reveal">
+        <span class="impact-number">$12,000+</span>
+        <span class="impact-label">Average Annual Savings Per Fleet</span>
+        <p class="impact-desc">Reduced filter replacements, extended equipment life, and lower maintenance costs add up fast.</p>
+      </div>
+      <div class="impact-card reveal">
+        <span class="impact-number">3-5x</span>
+        <span class="impact-label">Engine Air Filter Life Extension</span>
+        <p class="impact-desc">Turbo II PreCleaners remove up to 90% of contaminants before they reach your primary filter.</p>
+      </div>
+      <div class="impact-card reveal">
+        <span class="impact-number">200x</span>
+        <span class="impact-label">Cleaner Cabin Air</span>
+        <p class="impact-desc">Our Cabin Air Pressurizer delivers air 200x cleaner than competitors at 0.3 microns.</p>
+      </div>
+      <div class="impact-card reveal">
+        <span class="impact-number">83%</span>
+        <span class="impact-label">Filter Cost Reduction</span>
+        <p class="impact-desc">Michigan recycling facility went from 12 filters/month to 2 after installing Turbo II.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Testimonials</p>
+      <h2 class="section-title">What Our Customers Say</h2>
+    </div>
+    <div class="testimonials-grid">
+      {{#each testimonials}}
+      <div class="testimonial-block reveal">
+        <div class="testimonial-quote-icon">&ldquo;</div>
+        <blockquote class="testimonial-text">{{quote}}</blockquote>
+        <div class="testimonial-attribution">
+          <strong>{{author}}</strong>
+          <span>{{company}}</span>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</section>
+
+<!-- TRUSTED BY -->
+<section class="section trusted" style="background:var(--color-off-white)">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Trusted By</p>
+      <h2 class="section-title">Proven Across Industries</h2>
+    </div>
+    <div class="logo-marquee reveal" aria-label="Customer logos">
+      <div class="marquee-track">
+        {{#each clients}}
+        <div class="marquee-item">{{name}}</div>
+        {{/each}}
+        {{#each clients}}
+        <div class="marquee-item">{{name}}</div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+{{> cta-band}}

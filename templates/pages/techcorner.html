@@ -1,0 +1,60 @@
+{{> page-hero}}
+
+<!-- ARTICLES -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Articles &amp; Insights</p>
+      <h2 class="section-title">Industry Knowledge</h2>
+      <p class="section-sub">Deep dives into the technology behind our products and the problems they solve.</p>
+    </div>
+    <div class="tech-grid">
+      {{#each articles}}
+      <article class="tech-card reveal">
+        <div class="tech-card-badge">{{badge}}</div>
+        <div class="tech-card-icon{{#if serviceIcon}} tech-card-icon--service{{/if}}">
+          {{{icon}}}
+        </div>
+        <h3 class="tech-card-title">{{title}}</h3>
+        <p class="tech-card-desc">{{description}}</p>
+        <div class="tech-card-meta">
+          {{#each tags}}
+          <span class="tech-card-tag">{{this}}</span>
+          {{/each}}
+        </div>
+      </article>
+      {{/each}}
+    </div>
+  </div>
+</section>
+
+<!-- FIELD SERVICE GUIDES -->
+<section class="section" style="background:var(--color-off-white)">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Field Service</p>
+      <h2 class="section-title">Maintenance &amp; Service Guides</h2>
+      <p class="section-sub">Practical guides for technicians and fleet managers to keep products performing at their best.</p>
+    </div>
+    <div class="tech-grid">
+      {{#each fieldGuides}}
+      <article class="tech-card reveal">
+        <div class="tech-card-badge tech-card-badge--service">Field Guide</div>
+        <div class="tech-card-icon tech-card-icon--service">
+          {{{icon}}}
+        </div>
+        <h3 class="tech-card-title">{{title}}</h3>
+        <p class="tech-card-desc">{{description}}</p>
+        <div class="tech-card-meta">
+          {{#each tags}}
+          <span class="tech-card-tag">{{this}}</span>
+          {{/each}}
+        </div>
+      </article>
+      {{/each}}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+{{> cta-band}}

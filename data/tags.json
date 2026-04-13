@@ -1,0 +1,1028 @@
+{
+  "tags": [
+    {
+      "id": "HTZ",
+      "label": "HTZ",
+      "products": [
+        "T2-D6-LF",
+        "CCAP-D6-LF",
+        "MSE-60M12",
+        "EZ3-HTZ",
+        "H1D632"
+      ]
+    },
+    {
+      "id": "JML",
+      "label": "JML",
+      "products": [
+        "T2-D6-LF",
+        "CCAP-D6-LF",
+        "MSE-60M12",
+        "EZ3-JML",
+        "H1D632"
+      ]
+    },
+    {
+      "id": "SKL",
+      "label": "SKL",
+      "products": [
+        "T2-D6-LF",
+        "CCAP-D6-LF",
+        "MSE-60M12",
+        "EZ3-SKL",
+        "H1D632"
+      ]
+    },
+    {
+      "id": "KSB",
+      "label": "KSB",
+      "products": [
+        "T2-D6-LF",
+        "CCAP-D6-LF",
+        "MSE-60M12",
+        "EZ3-KSB",
+        "H1D632"
+      ]
+    },
+    {
+      "id": "D6",
+      "label": "D6",
+      "products": [
+        "T2-D6-LF",
+        "CCAP-D6-LF",
+        "MSE-60M12",
+        "H1D632"
+      ]
+    },
+    {
+      "id": "D6T",
+      "label": "D6T",
+      "products": [
+        "T2-D6-LF",
+        "CCAP-D6-LF",
+        "MSE-60M12",
+        "H1D632"
+      ]
+    },
+    {
+      "id": "D6R",
+      "label": "D6R",
+      "products": [
+        "T2-D6-LF",
+        "CCAP-D6-LF",
+        "MSE-60M12",
+        "EZ3-D6R",
+        "H1D632"
+      ]
+    },
+    {
+      "id": "2EN",
+      "label": "2EN",
+      "products": [
+        "T2-D7-LF",
+        "CCAP-D7-LF",
+        "MSE-60M12",
+        "EZ3-2EN"
+      ]
+    },
+    {
+      "id": "AEC",
+      "label": "AEC",
+      "products": [
+        "T2-D7-LF",
+        "CCAP-D7-LF",
+        "MSE-60M12",
+        "EZ3-AEC"
+      ]
+    },
+    {
+      "id": "D7",
+      "label": "D7",
+      "products": [
+        "T2-D7-LF",
+        "CCAP-D7-LF",
+        "MSE-60M12"
+      ]
+    },
+    {
+      "id": "D7R",
+      "label": "D7R",
+      "products": [
+        "T2-D7-LF",
+        "CCAP-D7-LF",
+        "MSE-60M12"
+      ]
+    },
+    {
+      "id": "FMC",
+      "label": "FMC",
+      "products": [
+        "T2-D8-LF",
+        "CCAP-D8-LF",
+        "MSE-80M24",
+        "MEA-80M130F",
+        "EZ3-FMC",
+        "H1D832"
+      ]
+    },
+    {
+      "id": "KPZ",
+      "label": "KPZ",
+      "products": [
+        "T2-D8-LF",
+        "CCAP-D8-LF",
+        "MSE-80M24",
+        "MEA-80M130F",
+        "EZ3-KPZ",
+        "H1D832"
+      ]
+    },
+    {
+      "id": "MLN",
+      "label": "MLN",
+      "products": [
+        "T2-D8-LF",
+        "CCAP-D8-LF",
+        "MSE-80M24",
+        "MEA-80M130F",
+        "EZ3-MLN",
+        "H1D832"
+      ]
+    },
+    {
+      "id": "D8",
+      "label": "D8",
+      "products": [
+        "T2-D8-LF",
+        "CCAP-D8-LF",
+        "MSE-80M24",
+        "MEA-80M130F",
+        "H1D832"
+      ]
+    },
+    {
+      "id": "D8R",
+      "label": "D8R",
+      "products": [
+        "T2-D8-LF",
+        "CCAP-D8-LF",
+        "MSE-80M24",
+        "MEA-80M130F",
+        "H1D832"
+      ]
+    },
+    {
+      "id": "D8T",
+      "label": "D8T",
+      "products": [
+        "T2-D8-LF",
+        "CCAP-D8-LF",
+        "MSE-80M24",
+        "MEA-80M130F",
+        "H1D832"
+      ]
+    },
+    {
+      "id": "D9",
+      "label": "D9",
+      "products": [
+        "T2-D9-LF",
+        "CCAP-D9-LF",
+        "MSE-80M24",
+        "MEA-80M130F"
+      ]
+    },
+    {
+      "id": "D9T",
+      "label": "D9T",
+      "products": [
+        "T2-D9-LF",
+        "CCAP-D9-LF",
+        "MSE-80M24",
+        "MEA-80M130F",
+        "EZ3-D9T"
+      ]
+    },
+    {
+      "id": "D10",
+      "label": "D10",
+      "products": [
+        "T2-D10-LF",
+        "CCAP-D10-LF",
+        "MSE-80M24",
+        "MEA-80M130F"
+      ]
+    },
+    {
+      "id": "D11",
+      "label": "D11",
+      "products": [
+        "T2-D11-LF",
+        "CCAP-D11-LF",
+        "MSE-80M24",
+        "MEA-80M130F"
+      ]
+    },
+    {
+      "id": "816",
+      "label": "816",
+      "products": [
+        "T2-816-LF",
+        "CCAP-816-LF",
+        "MSE-60M12"
+      ]
+    },
+    {
+      "id": "AYH",
+      "label": "AYH",
+      "products": [
+        "T2-826-LF",
+        "RDB-80R160",
+        "CCAP-826-LF",
+        "HVAC1240",
+        "MSE-80M24",
+        "MEA-80M130F",
+        "EZ3-AYH",
+        "H1832"
+      ]
+    },
+    {
+      "id": "7LN AWF",
+      "label": "7LN AWF",
+      "products": [
+        "T2-826-LF",
+        "RDB-80R160",
+        "CCAP-826-LF",
+        "HVAC1240",
+        "MSE-80M24",
+        "MEA-80M130F",
+        "H1832"
+      ]
+    },
+    {
+      "id": "5LN",
+      "label": "5LN",
+      "products": [
+        "T2-826-LF",
+        "RDB-80R160",
+        "CCAP-826-LF",
+        "HVAC1240",
+        "MSE-80M24",
+        "MEA-80M130F",
+        "EZ3-5LN",
+        "H1832"
+      ]
+    },
+    {
+      "id": "826G",
+      "label": "826G",
+      "products": [
+        "T2-826-LF",
+        "RDB-80R160",
+        "CCAP-826-LF",
+        "HVAC1240",
+        "MSE-80M24",
+        "MEA-80M130F",
+        "H1832"
+      ]
+    },
+    {
+      "id": "826H",
+      "label": "826H",
+      "products": [
+        "T2-826-LF",
+        "RDB-80R160",
+        "CCAP-826-LF",
+        "HVAC1240",
+        "MSE-80M24",
+        "MEA-80M130F",
+        "H1832"
+      ]
+    },
+    {
+      "id": "232",
+      "label": "232",
+      "products": [
+        "T2-826K-LF",
+        "RDB-80R160",
+        "CCAP-826K-LF",
+        "MSE-80M24",
+        "MEA-80M130F",
+        "EZ3-232",
+        "H1832"
+      ]
+    },
+    {
+      "id": "826K",
+      "label": "826K",
+      "products": [
+        "T2-826K-LF",
+        "RDB-80R160",
+        "CCAP-826K-LF",
+        "MSE-80M24",
+        "MEA-80M130F"
+      ]
+    },
+    {
+      "id": "BRL",
+      "label": "BRL",
+      "products": [
+        "T2-836-LF",
+        "RDB-80R160",
+        "CCAP-836-LF",
+        "HVAC1240",
+        "MSE-80M24",
+        "MEA-80M130F",
+        "EZ3-BRL",
+        "H1832"
+      ]
+    },
+    {
+      "id": "7MZ",
+      "label": "7MZ",
+      "products": [
+        "T2-836-LF",
+        "CCAP-836-LF",
+        "HVAC1240",
+        "EZ3-7MZ",
+        "H1832"
+      ]
+    },
+    {
+      "id": "BXD",
+      "label": "BXD",
+      "products": [
+        "T2-836-LF",
+        "RDB-80R160",
+        "CCAP-836-LF",
+        "HVAC1240",
+        "MSE-80M24",
+        "MEA-80M130F",
+        "EZ3-BXD",
+        "H1832"
+      ]
+    },
+    {
+      "id": "836G",
+      "label": "836G",
+      "products": [
+        "T2-836-LF",
+        "RDB-80R160",
+        "CCAP-836-LF",
+        "HVAC1240",
+        "MSE-80M24",
+        "MEA-80M130F",
+        "H1832"
+      ]
+    },
+    {
+      "id": "836H",
+      "label": "836H",
+      "products": [
+        "T2-836-LF",
+        "RDB-80R160",
+        "CCAP-836-LF",
+        "HVAC1240",
+        "MSE-80M24",
+        "MEA-80M130F",
+        "H1832"
+      ]
+    },
+    {
+      "id": "TWZ",
+      "label": "TWZ",
+      "products": [
+        "T2-836K-LF",
+        "RDB-80R160",
+        "CCAP-836K-LF",
+        "MSE-80M24",
+        "MEA-80M130F",
+        "EZ3-TWZ",
+        "H1832"
+      ]
+    },
+    {
+      "id": "T6X",
+      "label": "T6X",
+      "products": [
+        "T2-836K-LF",
+        "RDB-80R160",
+        "CCAP-836K-LF",
+        "MSE-80M24",
+        "MEA-80M130F",
+        "EZ3-T6X",
+        "H1832"
+      ]
+    },
+    {
+      "id": "938",
+      "label": "938",
+      "products": [
+        "T2-938-LF",
+        "CCAP-938-LF",
+        "MSE-60M12"
+      ]
+    },
+    {
+      "id": "950",
+      "label": "950",
+      "products": [
+        "T2-950-LF",
+        "CCAP-950-LF",
+        "MSE-60M12"
+      ]
+    },
+    {
+      "id": "966",
+      "label": "966",
+      "products": [
+        "T2-966-LF",
+        "CCAP-966-LF",
+        "MSE-60M12"
+      ]
+    },
+    {
+      "id": "976",
+      "label": "976",
+      "products": [
+        "T2-972-LF"
+      ]
+    },
+    {
+      "id": "980",
+      "label": "980",
+      "products": [
+        "T2-980-LF",
+        "CCAP-980-LF",
+        "MSE-80M24",
+        "MEA-80M130F"
+      ]
+    },
+    {
+      "id": "988",
+      "label": "988",
+      "products": [
+        "T2-988-LF",
+        "MSE-80M24",
+        "MEA-80M130F"
+      ]
+    },
+    {
+      "id": "320",
+      "label": "320",
+      "products": [
+        "T2-320-LF",
+        "CCAP-320-LF",
+        "MSE-60M12"
+      ]
+    },
+    {
+      "id": "330",
+      "label": "330",
+      "products": [
+        "T2-330-LF",
+        "CCAP-330-LF",
+        "MSE-60M12"
+      ]
+    },
+    {
+      "id": "323",
+      "label": "323",
+      "products": [
+        "T2-323-LF",
+        "CCAP-323-LF",
+        "MSE-60M12"
+      ]
+    },
+    {
+      "id": "336",
+      "label": "336",
+      "products": [
+        "T2-336-LF",
+        "CCAP-336-LF",
+        "MSE-80M24",
+        "MEA-80M130F"
+      ]
+    },
+    {
+      "id": "MD",
+      "label": "MD",
+      "products": [
+        "T2-HDPS-MD",
+        "T2-LID-MD",
+        "T2-SPNR-MD",
+        "CCAP-HP-MD"
+      ]
+    },
+    {
+      "id": "LG",
+      "label": "LG",
+      "products": [
+        "T2-HDPS-LG",
+        "T2-LID-LG",
+        "T2-SPNR-LG"
+      ]
+    },
+    {
+      "id": "Packer",
+      "label": "Packer",
+      "products": [
+        "RDB-80R160",
+        "MSE-80M24",
+        "MEA-80M130F"
+      ]
+    },
+    {
+      "id": "7ML",
+      "label": "7ML",
+      "products": [
+        "RDB-80R160",
+        "MSE-80M24",
+        "MEA-80M130F"
+      ]
+    },
+    {
+      "id": "836K",
+      "label": "836K",
+      "products": [
+        "RDB-80R160",
+        "MSE-80M24",
+        "MEA-80M130F"
+      ]
+    },
+    {
+      "id": "836",
+      "label": "836",
+      "products": [
+        "RDB-80R160",
+        "MSE-80M24",
+        "MEA-80M130F",
+        "H1832"
+      ]
+    },
+    {
+      "id": "972",
+      "label": "972",
+      "products": [
+        "CCAP-972-LF"
+      ]
+    },
+    {
+      "id": "326",
+      "label": "326",
+      "products": [
+        "CCAP-326-LF",
+        "MSE-60M12"
+      ]
+    },
+    {
+      "id": "333",
+      "label": "333",
+      "products": [
+        "CCAP-333-LF"
+      ]
+    },
+    {
+      "id": "HVAC43",
+      "label": "HVAC43",
+      "products": [
+        "HVAC43"
+      ]
+    },
+    {
+      "id": "HVAC80",
+      "label": "HVAC80",
+      "products": [
+        "HVAC80"
+      ]
+    },
+    {
+      "id": "9990",
+      "label": "9990",
+      "products": [
+        "ECO-9990"
+      ]
+    },
+    {
+      "id": "9999",
+      "label": "9999",
+      "products": [
+        "ECO-9999"
+      ]
+    },
+    {
+      "id": "9990NH3",
+      "label": "9990NH3",
+      "products": [
+        "ECO-9990NH3"
+      ]
+    },
+    {
+      "id": "9999NH3",
+      "label": "9999NH3",
+      "products": [
+        "ECO-9999NH3"
+      ]
+    },
+    {
+      "id": "LF",
+      "label": "LF",
+      "products": [
+        "CCAP-HP-LF"
+      ]
+    },
+    {
+      "id": "B",
+      "label": "B",
+      "products": [
+        "CCAP-MTR-5524-B",
+        "CCAP- BOX-B",
+        "CCAP-HOSE-B",
+        "H0120B"
+      ]
+    },
+    {
+      "id": "W",
+      "label": "W",
+      "products": [
+        "CCAP-MTR-5524-W",
+        "CCAP- BOX-W",
+        "CCAP-HOSE-W"
+      ]
+    },
+    {
+      "id": "PC 3.0",
+      "label": "PC 3.0",
+      "products": [
+        "CCAP-PC 3.0"
+      ]
+    },
+    {
+      "id": "55DOOR BLACK",
+      "label": "55DOOR BLACK",
+      "products": [
+        "CCAP-55DOOR BLACK"
+      ]
+    },
+    {
+      "id": "55DOOR WHITE",
+      "label": "55DOOR WHITE",
+      "products": [
+        "CCAP-55DOOR WHITE"
+      ]
+    },
+    {
+      "id": "ACORNNUT",
+      "label": "ACORNNUT",
+      "products": [
+        "CCAP-ACORNNUT"
+      ]
+    },
+    {
+      "id": "FLTRNUT",
+      "label": "FLTRNUT",
+      "products": [
+        "CCAP-FLTRNUT"
+      ]
+    },
+    {
+      "id": "RW",
+      "label": "RW",
+      "products": [
+        "CCAP-FPS-P-RW"
+      ]
+    },
+    {
+      "id": "60M06",
+      "label": "60M06",
+      "products": [
+        "MSE-60M06"
+      ]
+    },
+    {
+      "id": "Dozer",
+      "label": "Dozer",
+      "products": [
+        "MSE-60M12",
+        "MSE-80M24",
+        "MEA-80M130F"
+      ]
+    },
+    {
+      "id": "950M",
+      "label": "950M",
+      "products": [
+        "MSE-60M12"
+      ]
+    },
+    {
+      "id": "loader",
+      "label": "loader",
+      "products": [
+        "MSE-60M12",
+        "MSE-80M24",
+        "MEA-80M130F"
+      ]
+    },
+    {
+      "id": "excavator",
+      "label": "excavator",
+      "products": [
+        "MSE-60M12",
+        "MSE-80M24",
+        "MEA-80M130F"
+      ]
+    },
+    {
+      "id": "60M18",
+      "label": "60M18",
+      "products": [
+        "MSE-60M18"
+      ]
+    },
+    {
+      "id": "60M24",
+      "label": "60M24",
+      "products": [
+        "MSE-60M24"
+      ]
+    },
+    {
+      "id": "60M36",
+      "label": "60M36",
+      "products": [
+        "MSE-60M36"
+      ]
+    },
+    {
+      "id": "60M48",
+      "label": "60M48",
+      "products": [
+        "MSE-60M48"
+      ]
+    },
+    {
+      "id": "70M12",
+      "label": "70M12",
+      "products": [
+        "MSE-70M12"
+      ]
+    },
+    {
+      "id": "70M18",
+      "label": "70M18",
+      "products": [
+        "MSE-70M18"
+      ]
+    },
+    {
+      "id": "70M24",
+      "label": "70M24",
+      "products": [
+        "MSE-70M24"
+      ]
+    },
+    {
+      "id": "70M36",
+      "label": "70M36",
+      "products": [
+        "MSE-70M36"
+      ]
+    },
+    {
+      "id": "70M48",
+      "label": "70M48",
+      "products": [
+        "MSE-70M48"
+      ]
+    },
+    {
+      "id": "80M06",
+      "label": "80M06",
+      "products": [
+        "MSE-80M06"
+      ]
+    },
+    {
+      "id": "80M12",
+      "label": "80M12",
+      "products": [
+        "MSE-80M12"
+      ]
+    },
+    {
+      "id": "80M18",
+      "label": "80M18",
+      "products": [
+        "MSE-80M18"
+      ]
+    },
+    {
+      "id": "349",
+      "label": "349",
+      "products": [
+        "MSE-80M24",
+        "MEA-80M130F"
+      ]
+    },
+    {
+      "id": "349F",
+      "label": "349F",
+      "products": [
+        "MSE-80M24",
+        "MEA-80M130F"
+      ]
+    },
+    {
+      "id": "80M36",
+      "label": "80M36",
+      "products": [
+        "MSE-80M36"
+      ]
+    },
+    {
+      "id": "80M48",
+      "label": "80M48",
+      "products": [
+        "MSE-80M48"
+      ]
+    },
+    {
+      "id": "60M70",
+      "label": "60M70",
+      "products": [
+        "MEA-60M70"
+      ]
+    },
+    {
+      "id": "60M80",
+      "label": "60M80",
+      "products": [
+        "MEA-60M80"
+      ]
+    },
+    {
+      "id": "60M90",
+      "label": "60M90",
+      "products": [
+        "MEA-60M90"
+      ]
+    },
+    {
+      "id": "60M100",
+      "label": "60M100",
+      "products": [
+        "MEA-60M100"
+      ]
+    },
+    {
+      "id": "60M110",
+      "label": "60M110",
+      "products": [
+        "MEA-60M110"
+      ]
+    },
+    {
+      "id": "70M80",
+      "label": "70M80",
+      "products": [
+        "MEA-70M80"
+      ]
+    },
+    {
+      "id": "70M90",
+      "label": "70M90",
+      "products": [
+        "MEA-70M90"
+      ]
+    },
+    {
+      "id": "70M100",
+      "label": "70M100",
+      "products": [
+        "MEA-70M100"
+      ]
+    },
+    {
+      "id": "80M90",
+      "label": "80M90",
+      "products": [
+        "MEA-80M90"
+      ]
+    },
+    {
+      "id": "80M100",
+      "label": "80M100",
+      "products": [
+        "MEA-80M100"
+      ]
+    },
+    {
+      "id": "7LN",
+      "label": "7LN",
+      "products": [
+        "EZ3-7LN"
+      ]
+    },
+    {
+      "id": "AWF",
+      "label": "AWF",
+      "products": [
+        "EZ3-AWF"
+      ]
+    },
+    {
+      "id": "6YZ",
+      "label": "6YZ",
+      "products": [
+        "EZ3-6YZ"
+      ]
+    },
+    {
+      "id": "D9R",
+      "label": "D9R",
+      "products": [
+        "EZ3-D9R"
+      ]
+    },
+    {
+      "id": "RJG",
+      "label": "RJG",
+      "products": [
+        "EZ3-RJG"
+      ]
+    },
+    {
+      "id": "F",
+      "label": "F",
+      "products": [
+        "H3002F",
+        "H3004F",
+        "H3006F",
+        "H3009F"
+      ]
+    },
+    {
+      "id": "DL",
+      "label": "DL",
+      "products": [
+        "H3002DL",
+        "H3004DL",
+        "H3006DL",
+        "H3009DL"
+      ]
+    },
+    {
+      "id": "A",
+      "label": "A",
+      "products": [
+        "H0113A",
+        "H0116A",
+        "H0120A"
+      ]
+    },
+    {
+      "id": "G",
+      "label": "G",
+      "products": [
+        "H0120G"
+      ]
+    },
+    {
+      "id": "826",
+      "label": "826",
+      "products": [
+        "H1832"
+      ]
+    },
+    {
+      "id": "H0507",
+      "label": "H0507",
+      "products": [
+        "H0507"
+      ]
+    },
+    {
+      "id": "H0512",
+      "label": "H0512",
+      "products": [
+        "H0512"
+      ]
+    },
+    {
+      "id": "H0516",
+      "label": "H0516",
+      "products": [
+        "H0516"
+      ]
+    },
+    {
+      "id": "HD*",
+      "label": "HD*",
+      "products": [
+        "H0516HD*"
+      ]
+    }
+  ],
+  "totalCount": 115
+}

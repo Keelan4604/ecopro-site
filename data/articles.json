@@ -1,0 +1,67 @@
+{
+  "articles": [
+    {
+      "id": "green-revolution-turbo-ii",
+      "slug": "the-green-revolution-how-ecopros-turbo-ii-hd",
+      "title": "The Green Revolution: How EcoPro's Turbo II HD PreCleaner is Redefining Clean Air in Heavy Machinery",
+      "category": "case-study",
+      "date": "2024-07-10",
+      "status": "published",
+      "wpUrl": "https://ecoprousa.com/the-green-revolution-how-ecopros-turbo-ii-hd-precleaner-is-redefining-clean-air-in-heavy-machinery/"
+    },
+    {
+      "id": "good-thinking",
+      "slug": "good-thinking",
+      "title": "Good Thinking",
+      "category": "tech-insight",
+      "date": "2024-07-15",
+      "status": "published",
+      "wpUrl": "https://ecoprousa.com/good-thinking/"
+    },
+    {
+      "id": "turbo-ii-typical-applications",
+      "slug": "turbo-ii-hd-typical-applications",
+      "title": "Turbo II HD Typical Applications",
+      "category": "product-guide",
+      "date": "2024-07-15",
+      "status": "published",
+      "wpUrl": "https://ecoprousa.com/turbo-ii-hd-typical-applications/"
+    },
+    {
+      "id": "turbo-ii-key-benefits",
+      "slug": "turbo-ii-hd-key-benefits",
+      "title": "Turbo II HD Key Benefits",
+      "category": "product-guide",
+      "date": "2024-07-15",
+      "status": "published",
+      "wpUrl": "https://ecoprousa.com/turbo-ii-hd-key-benefits/"
+    },
+    {
+      "id": "replacing-the-spinner",
+      "slug": "turbo-iihd-replacing-the-spinner",
+      "title": "Replacing the Spinner",
+      "category": "field-service",
+      "date": "2026-04-01",
+      "status": "published",
+      "wpUrl": "https://ecoprousa.com/turbo-iihd-replacing-the-spinner/"
+    },
+    {
+      "id": "pre-screen-cleaning",
+      "slug": "turbo-iihd-pre-screen-cleaning",
+      "title": "Pre-Screen Cleaning",
+      "category": "field-service",
+      "date": "2026-04-01",
+      "status": "published",
+      "wpUrl": "https://ecoprousa.com/turbo-iihd-pre-screen-cleaning/"
+    },
+    {
+      "id": "air-filter-precleaner",
+      "slug": "turbo-iihd-air-filter-precleaner",
+      "title": "Air Filter PreCleaner",
+      "category": "field-service",
+      "date": "2026-04-01",
+      "status": "published",
+      "wpUrl": "https://ecoprousa.com/turbo-iihd-air-filter-precleaner/"
+    }
+  ]
+}

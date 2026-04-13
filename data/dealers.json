@@ -1,0 +1,40 @@
+{
+  "channels": [
+    {
+      "id": "buy-direct",
+      "name": "Buy Direct from EcoPro",
+      "recommended": true,
+      "description": "The fastest way to get what you need. Fill out a quick quote request and we'll put together pricing tailored to your fleet and equipment. Direct purchasing means direct support — from product selection through installation.",
+      "cta": { "label": "Request a Quote", "url": "/contact/" }
+    },
+    {
+      "id": "large-fleets",
+      "name": "Large Fleets & Existing CCAP Customers",
+      "recommended": false,
+      "description": "If you're already using our Cabin Air Pressurizer (CCAP), there's a great chance we already have a parts contact set up for your operation. Search \"EcoPro\" or \"Eco Pro\" in your online procurement system — you may already have us as an approved vendor. If not, contact us and we'll send you our machine-number list so you can get a quote fast.",
+      "cta": { "label": "Contact Us for Your Machine List", "url": "/contact/" }
+    },
+    {
+      "id": "caterpillar-dealers",
+      "name": "Caterpillar Dealers",
+      "recommended": false,
+      "tag": "50%+ of Cat Dealers",
+      "description": "Over 50% of Caterpillar dealers across the country carry or resell EcoPro products — and some even keep them in stock. Ask your local Cat dealer about EcoPro filtration and protection products, or contact us and we'll help you find a dealer near you.",
+      "cta": { "label": "Find a Cat Dealer with EcoPro", "url": "/contact/" }
+    },
+    {
+      "id": "oem-dealers",
+      "name": "Komatsu, Volvo & John Deere Dealers",
+      "recommended": false,
+      "description": "A growing number of dealers serving Komatsu, Volvo, and John Deere equipment also resell EcoPro products. Contact us to find out if there's a dealer near you carrying our lineup for your specific equipment brand.",
+      "cta": { "label": "Find a Dealer Near You", "url": "/contact/" }
+    },
+    {
+      "id": "other",
+      "name": "Need Something Else?",
+      "recommended": false,
+      "description": "Can't find what you're looking for, or not sure which purchasing option is right for your operation? Reach out — we're here to help and we'll get you pointed in the right direction.",
+      "cta": { "label": "Contact EcoPro", "url": "/contact/" }
+    }
+  ]
+}

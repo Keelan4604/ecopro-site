@@ -1,0 +1,42 @@
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="{{rootPath}}images/logo/eco-pro-logo-300x73.png" alt="EcoPro USA" width="160" height="39" class="footer-logo">
+      <p class="footer-tagline">Independently owned and operated. Proven products for heavy equipment — made in the USA.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4 class="footer-heading">Products</h4>
+        <ul>
+          {{#each footerProducts}}
+          <li><a href="{{url}}">{{label}}</a></li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Company</h4>
+        <ul>
+          <li><a href="{{rootPath}}about/">About</a></li>
+          <li><a href="{{rootPath}}where-to-buy/">Where to Buy</a></li>
+          <li><a href="{{rootPath}}results/">Results</a></li>
+          <li><a href="{{rootPath}}techcorner/">Tech Corner</a></li>
+          <li><a href="{{rootPath}}contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="footer-heading">Contact</h4>
+        <ul>
+          <li><a href="tel:{{company.phoneTel}}">{{company.phone}}</a></li>
+          <li><a href="mailto:{{company.emails.primary}}">{{company.emails.primary}}</a></li>
+          <li>{{company.address.street}}<br>{{company.address.city}}, {{company.address.state}} {{company.address.zip}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>&copy; {{currentYear}} EcoPro USA. All rights reserved.</p>
+      <p>Independently owned &amp; operated &bull; Made in the USA</p>
+    </div>
+  </div>
+</footer>

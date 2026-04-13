@@ -1,0 +1,46 @@
+{{> page-hero}}
+
+<section class="section">
+  <div class="container">
+    <div class="product-page-layout">
+      {{> product-sidebar}}
+      <div>
+        <div class="section-header reveal">
+          <p class="section-eyebrow">All Product Lines</p>
+          <h2 class="section-title">Browse Our Full Catalog</h2>
+          <p class="section-sub">From pre-cleaners that extend filter life 3-5x to cabin pressurizers delivering air 200x cleaner than competitors — browse our complete product lineup below.</p>
+        </div>
+
+        {{#each productCategories}}
+        <div class="product-category-section reveal" style="margin-bottom:var(--space-3xl)" id="{{anchor}}">
+          <h3 style="font-size:1.3rem;font-weight:700;color:var(--color-navy);margin-bottom:var(--space-xs)">{{name}}</h3>
+          {{#if description}}
+          <p style="font-size:0.9rem;color:var(--color-gray-600);margin-bottom:var(--space-lg)">{{description}}</p>
+          {{/if}}
+          <div class="product-listing-grid">
+            {{#each products}}
+            <a href="{{url}}" class="product-listing-card">
+              <div class="product-listing-card-img">
+                <img src="{{image}}" alt="{{name}}" loading="lazy">
+              </div>
+              <div class="product-listing-card-body">
+                <h3>{{name}}</h3>
+                <p>{{shortDescription}}</p>
+                <span class="btn btn-secondary btn-sm">View Product</span>
+              </div>
+            </a>
+            {{/each}}
+          </div>
+          {{#if viewAllUrl}}
+          <div style="margin-top:var(--space-lg);text-align:center">
+            <a href="{{viewAllUrl}}" class="btn btn-outline">View All {{name}} &rarr;</a>
+          </div>
+          {{/if}}
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{> cta-band}}

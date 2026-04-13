@@ -1,0 +1,73 @@
+<form class="contact-form" id="contact-form" method="POST" action="{{contactFormUrl}}" data-ajax="true">
+  <div class="form-row">
+    <div class="form-group">
+      <label for="firstName" class="form-label">First Name</label>
+      <input type="text" id="firstName" name="firstName" class="form-input" placeholder="John" required>
+    </div>
+    <div class="form-group">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input type="text" id="lastName" name="lastName" class="form-input" placeholder="Smith" required>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required>
+    </div>
+    <div class="form-group">
+      <label for="phone" class="form-label">Phone</label>
+      <input type="tel" id="phone" name="phone" class="form-input" placeholder="(555) 123-4567" required>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="company" class="form-label">Company Name</label>
+      <input type="text" id="company" name="company" class="form-input" placeholder="Your company name" required>
+    </div>
+    <div class="form-group">
+      <label for="website" class="form-label">Company Website</label>
+      <input type="url" id="website" name="website" class="form-input" placeholder="https://yourcompany.com" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="subject" class="form-label">Subject</label>
+    <select id="subject" name="subject" class="form-input form-select">
+      <option value="">Select a topic...</option>
+      <option value="quote">Request a Quote</option>
+      <option value="product">Product Inquiry</option>
+      <option value="technical">Technical Support</option>
+      <option value="order">Order / Service</option>
+      <option value="billing">Billing / Accounting</option>
+      <option value="other">General / Other</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="form-label">What products are you interested in?</label>
+    <div class="product-interest-grid">
+      <label><input type="checkbox" name="products" value="Turbo II HD PreCleaner"> Turbo II HD PreCleaner</label>
+      <label><input type="checkbox" name="products" value="Cabin Air Pressurizer"> Cabin Air Pressurizer</label>
+      <label><input type="checkbox" name="products" value="LED HD Lights"> LED HD Lights</label>
+      <label><input type="checkbox" name="products" value="Desiccant Breathers"> Desiccant Breathers</label>
+      <label><input type="checkbox" name="products" value="Metal Adapters"> Metal Adapters</label>
+      <label><input type="checkbox" name="products" value="Jump Starters"> Jump Starters</label>
+      <label><input type="checkbox" name="products" value="Rubber Adapters"> Rubber Adapters</label>
+      <label><input type="checkbox" name="products" value="HVAC Access Doors"> HVAC Access Doors</label>
+      <label><input type="checkbox" name="products" value="EZ3 Machine-Specific Kits"> EZ3 Machine-Specific Kits</label>
+      <label><input type="checkbox" name="products" value="Axle Guards for Packers"> Axle Guards for Packers</label>
+      <label><input type="checkbox" name="products" value="Steel Tipper Wheels"> Steel Tipper Wheels</label>
+      <label><input type="checkbox" name="products" value="UltraBurn Catalyst System"> UltraBurn Catalyst System</label>
+      <label><input type="checkbox" name="products" value="Form-A-Funnel"> Form-A-Funnel</label>
+      <label><input type="checkbox" name="products" value="Yelloc"> Yelloc</label>
+      <label><input type="checkbox" name="products" value="Fireball Fire Extinguisher"> Fireball Fire Extinguisher</label>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="message" class="form-label">Message</label>
+    <textarea id="message" name="message" class="form-input form-textarea" rows="5" placeholder="Tell us about your equipment and what you're looking for..." required></textarea>
+  </div>
+  <!-- Honeypot -->
+  <div style="position:absolute;left:-9999px" aria-hidden="true">
+    <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+  </div>
+  <button type="submit" class="btn btn-primary btn-lg form-submit">Send Message</button>
+</form>

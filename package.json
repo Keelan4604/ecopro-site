@@ -1,0 +1,16 @@
+{
+  "name": "ecopro-site",
+  "version": "1.0.0",
+  "description": "EcoPro USA — Static site with build system, deployed to Cloudflare Pages",
+  "private": true,
+  "scripts": {
+    "sync": "node build/sync-sheet.js",
+    "build": "node build/build.js",
+    "dev": "node build/build.js --watch",
+    "serve": "npx serve dist -l 3456",
+    "deploy": "npx wrangler pages deploy dist --project-name=ecopro-site",
+    "download-media": "node build/download-wp-media.js"
+  },
+  "author": "EcoPro USA",
+  "license": "UNLICENSED"
+}
