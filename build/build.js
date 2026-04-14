@@ -587,6 +587,14 @@ cleanDir(DIST);
 console.log('Copying static assets...');
 copyDirSync(STATIC, DIST);
 
+// Copy admin UI (standalone HTML pages, not built by template engine)
+const ADMIN_SRC = path.join(ROOT, 'admin');
+const ADMIN_DEST = path.join(DIST, 'admin');
+if (fs.existsSync(ADMIN_SRC)) {
+  copyDirSync(ADMIN_SRC, ADMIN_DEST);
+  console.log('  ✓ admin/ copied');
+}
+
 console.log('Initializing template engine...');
 const engine = new TemplateEngine(path.join(TEMPLATES, 'partials'));
 const layoutTemplate = fs.readFileSync(path.join(TEMPLATES, 'layouts', 'base.html'), 'utf8');

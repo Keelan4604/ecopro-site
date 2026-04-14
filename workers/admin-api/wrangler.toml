@@ -7,4 +7,4 @@ ALLOWED_ORIGIN = "https://ecopro.keelanodoherty.org"
 
 [[kv_namespaces]]
 binding = "ADMIN_KV"
-id = "" # Will be filled after creation
+id = "845fa7aabbe34453b52936583bfa0f8f"

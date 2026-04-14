@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products — EcoPro USA Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body data-page="products">
+
+  <!-- Header -->
+  <header class="admin-header">
+    <div class="header-left">
+      <h1>EcoPro USA &mdash; Admin Panel</h1>
+    </div>
+    <div class="header-right">
+      <span class="user-email">loading...</span>
+      <button class="btn-logout">Logout</button>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <nav class="admin-sidebar">
+    <ul class="sidebar-nav">
+      <li class="nav-section">Content</li>
+      <li><a href="dashboard.html"><span class="nav-icon">&#9632;</span> Dashboard</a></li>
+      <li><a href="products.html" class="active"><span class="nav-icon">&#9776;</span> Products</a></li>
+      <li><a href="#"><span class="nav-icon">&#9998;</span> Articles <span class="nav-badge">Soon</span></a></li>
+      <li><a href="#"><span class="nav-icon">&#128247;</span> Media <span class="nav-badge">Soon</span></a></li>
+      <li class="nav-section">System</li>
+      <li><a href="#"><span class="nav-icon">&#9881;</span> Settings <span class="nav-badge">Soon</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="admin-main">
+    <h2 class="page-title">Products</h2>
+
+    <div class="products-layout">
+      <!-- Product List Panel -->
+      <div class="product-list-panel">
+        <div class="product-search">
+          <input type="text" id="product-search" placeholder="Search products...">
+        </div>
+        <ul class="product-list" id="product-list">
+          <li class="product-list-empty">Loading...</li>
+        </ul>
+      </div>
+
+      <!-- Product Editor Panel -->
+      <div class="product-editor">
+        <!-- Placeholder when nothing selected -->
+        <div id="editor-placeholder" class="editor-placeholder">
+          <div class="icon">&#128221;</div>
+          <p>Select a product from the list to edit</p>
+        </div>
+
+        <!-- Editor (hidden until product selected) -->
+        <div id="editor-form-area" style="display: none;">
+          <div class="editor-header">
+            <h3 id="editor-title">Product Name</h3>
+          </div>
+
+          <!-- Tabs -->
+          <div class="editor-tabs">
+            <button class="editor-tab active" data-tab="basic">Basic Info</button>
+            <button class="editor-tab" data-tab="description">Description</button>
+            <button class="editor-tab" data-tab="specs">Specs</button>
+            <button class="editor-tab" data-tab="images">Images</button>
+            <button class="editor-tab" data-tab="pdfs">PDFs</button>
+          </div>
+
+          <form id="product-form">
+            <!-- Basic Info Tab -->
+            <div class="tab-content active" id="tab-basic">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="field-name">Product Name</label>
+                  <input type="text" id="field-name" required>
+                </div>
+                <div class="form-group">
+                  <label for="field-slug">Slug</label>
+                  <input type="text" id="field-slug" readonly style="background: var(--color-gray-50); color: var(--color-gray-500);">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="field-category">Category</label>
+                  <input type="text" id="field-category">
+                </div>
+                <div class="form-group">
+                  <label for="field-subcategory">Subcategory</label>
+                  <input type="text" id="field-subcategory">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="field-status">Status</label>
+                  <select id="field-status">
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="field-sku">SKU</label>
+                  <input type="text" id="field-sku">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="field-tags">Tags (comma-separated)</label>
+                <input type="text" id="field-tags" placeholder="eco-friendly, industrial, coating">
+              </div>
+              <div class="form-group">
+                <label for="field-shortDescription">Short Description</label>
+                <input type="text" id="field-shortDescription">
+              </div>
+            </div>
+
+            <!-- Description Tab -->
+            <div class="tab-content" id="tab-description">
+              <div class="form-group">
+                <label for="field-description">Full Description</label>
+                <textarea id="field-description" rows="16"></textarea>
+              </div>
+            </div>
+
+            <!-- Specs Tab -->
+            <div class="tab-content" id="tab-specs">
+              <div class="form-group">
+                <label for="field-specs">Specifications (JSON)</label>
+                <textarea id="field-specs" rows="16" placeholder='{ "weight": "5 lbs", "coverage": "200 sq ft" }'></textarea>
+              </div>
+            </div>
+
+            <!-- Images Tab -->
+            <div class="tab-content" id="tab-images">
+              <div class="form-group">
+                <label for="field-images">Image URLs (one per line)</label>
+                <textarea id="field-images" rows="10" placeholder="https://example.com/image1.jpg"></textarea>
+              </div>
+            </div>
+
+            <!-- PDFs Tab -->
+            <div class="tab-content" id="tab-pdfs">
+              <div class="form-group">
+                <label for="field-pdfs">Documents (one per line, format: Name|URL)</label>
+                <textarea id="field-pdfs" rows="10" placeholder="Safety Data Sheet|https://example.com/sds.pdf"></textarea>
+              </div>
+            </div>
+
+            <!-- Save Button (always visible) -->
+            <div style="padding: 0 24px 24px;">
+              <button type="submit" class="btn btn-primary btn-save">
+                <span class="spinner"></span>
+                <span class="btn-text">Save Product</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
