@@ -8,3 +8,7 @@ ALLOWED_ORIGIN = "https://ecopro.keelanodoherty.org,https://ecopro-site.pages.de
 [[kv_namespaces]]
 binding = "ADMIN_KV"
 id = "845fa7aabbe34453b52936583bfa0f8f"
+
+[[kv_namespaces]]
+binding = "SUBMISSIONS"
+id = "4540efcaee8e4fdfae18343ba4cc9fcd"

@@ -11,7 +11,9 @@ export async function setUser(kv, email, userData) {
 
 export async function getProducts(kv) {
   const data = await kv.get('products', { type: 'json' });
-  return data || [];
+  if (!data) return [];
+  // Handle both {products: [...]} wrapper and plain array
+  return Array.isArray(data) ? data : (Array.isArray(data.products) ? data.products : []);
 }
 
 export async function getProduct(kv, slug) {

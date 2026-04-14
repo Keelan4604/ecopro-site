@@ -175,6 +175,44 @@ async function handleUpdateProduct(request, env, slug) {
   return jsonResponse({ product });
 }
 
+async function handleGetSubmissions(request, env) {
+  const payload = await requireAuth(request, env);
+  if (!payload) return errorResponse('Unauthorized', 401);
+
+  // List all submission keys from KV
+  // Submissions are stored in the SUBMISSIONS KV namespace if bound,
+  // otherwise fall back to ADMIN_KV with submission_ prefix
+  const kv = env.SUBMISSIONS || env.ADMIN_KV;
+  const submissions = [];
+
+  try {
+    let cursor = null;
+    do {
+      const listOpts = { prefix: 'submission_', limit: 100 };
+      if (cursor) listOpts.cursor = cursor;
+      const result = await kv.list(listOpts);
+      for (const key of result.keys) {
+        const data = await kv.get(key.name, { type: 'json' });
+        if (data) {
+          submissions.push({ id: key.name, ...data });
+        }
+      }
+      cursor = result.list_complete ? null : result.cursor;
+    } while (cursor);
+  } catch (err) {
+    console.error('Failed to load submissions:', err);
+  }
+
+  // Sort newest first
+  submissions.sort((a, b) => {
+    const da = new Date(a.submittedAt || a.timestamp || 0);
+    const db = new Date(b.submittedAt || b.timestamp || 0);
+    return db - da;
+  });
+
+  return jsonResponse({ submissions });
+}
+
 async function handleRebuild(request, env) {
   const payload = await requireAuth(request, env);
   if (!payload) return errorResponse('Unauthorized', 401);
@@ -250,6 +288,8 @@ function matchRoute(method, pathname) {
     const slug = pathname.replace('/api/admin/products/', '');
     if (slug && !slug.includes('/')) return { handler: 'updateProduct', slug };
   }
+  // GET /api/admin/submissions
+  if (method === 'GET' && pathname === '/api/admin/submissions') return { handler: 'listSubmissions' };
   // POST /api/admin/rebuild
   if (method === 'POST' && pathname === '/api/admin/rebuild') return { handler: 'rebuild' };
   // POST /api/admin/setup
@@ -298,6 +338,9 @@ export default {
           break;
         case 'updateProduct':
           response = await handleUpdateProduct(request, env, route.slug);
+          break;
+        case 'listSubmissions':
+          response = await handleGetSubmissions(request, env);
           break;
         case 'rebuild':
           response = await handleRebuild(request, env);

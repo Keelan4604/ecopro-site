@@ -3,6 +3,7 @@
    ============================================ */
 
 const API_BASE = 'https://ecopro-admin-api.keelan4604.workers.dev';
+const CONTACT_API = 'https://ecopro-contact-form.keelan4604.workers.dev';
 
 // ---- API Helper ----
 async function api(path, options = {}) {
@@ -39,10 +40,9 @@ async function requireAuth() {
     return null;
   }
   // Populate user email in header
-  const emailEl = document.querySelector('.user-email');
-  if (emailEl && user.email) {
-    emailEl.textContent = user.email;
-  }
+  document.querySelectorAll('.user-email').forEach(el => {
+    el.textContent = user.email;
+  });
   return user;
 }
 
@@ -50,6 +50,11 @@ async function requireAuth() {
 function initLogin() {
   const form = document.getElementById('login-form');
   if (!form) return;
+
+  // If already logged in, redirect to dashboard
+  checkAuth().then(user => {
+    if (user) window.location.href = 'dashboard.html';
+  });
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -96,15 +101,39 @@ function hideLoginError(el) {
 
 // ---- Logout ----
 function initLogout() {
-  const btn = document.querySelector('.btn-logout');
-  if (!btn) return;
-  btn.addEventListener('click', async () => {
-    try {
-      await api('/api/admin/logout', { method: 'POST' });
-    } catch {
-      // proceed regardless
-    }
-    window.location.href = 'index.html';
+  document.querySelectorAll('.btn-logout').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      try {
+        await api('/api/admin/logout', { method: 'POST' });
+      } catch {
+        // proceed regardless
+      }
+      window.location.href = 'index.html';
+    });
+  });
+}
+
+// ---- Rebuild ----
+function initRebuild() {
+  const btns = [document.getElementById('btn-rebuild'), document.getElementById('nav-rebuild')];
+  btns.forEach(btn => {
+    if (!btn) return;
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const mainBtn = document.getElementById('btn-rebuild') || btn;
+      mainBtn.classList.add('loading');
+      if (mainBtn.disabled !== undefined) mainBtn.disabled = true;
+
+      try {
+        await api('/api/admin/rebuild', { method: 'POST' });
+        toast('Site rebuild triggered!', 'success');
+      } catch (err) {
+        toast('Rebuild failed: ' + err.message, 'error');
+      } finally {
+        mainBtn.classList.remove('loading');
+        if (mainBtn.disabled !== undefined) mainBtn.disabled = false;
+      }
+    });
   });
 }
 
@@ -135,13 +164,18 @@ async function initDashboard() {
   if (!user) return;
 
   initLogout();
-  loadDashboardStats();
+  initRebuild();
 
-  // Rebuild button
-  const rebuildBtn = document.getElementById('btn-rebuild');
-  if (rebuildBtn) {
-    rebuildBtn.addEventListener('click', handleRebuild);
+  // Set welcome message
+  const welcomeEl = document.getElementById('welcome-msg');
+  if (welcomeEl && user.email) {
+    const name = user.email.split('@')[0];
+    const hour = new Date().getHours();
+    const greeting = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
+    welcomeEl.textContent = `${greeting}, ${name}`;
   }
+
+  loadDashboardStats();
 }
 
 async function loadDashboardStats() {
@@ -150,15 +184,38 @@ async function loadDashboardStats() {
     const products = data.products || [];
 
     const total = products.length;
-    const active = products.filter(p => p.status === 'active').length;
+    const active = products.filter(p => p.status === 'active' || !p.status).length;
     const categories = [...new Set(products.map(p => p.category).filter(Boolean))].length;
 
-    setStatValue('stat-total', total);
-    setStatValue('stat-active', active);
-    setStatValue('stat-categories', categories);
+    animateStat('stat-total', total);
+    animateStat('stat-active', active);
+    animateStat('stat-categories', categories);
   } catch (err) {
     console.error('Failed to load stats:', err);
+    setStatValue('stat-total', '!');
+    setStatValue('stat-active', '!');
+    setStatValue('stat-categories', '!');
   }
+
+  // Load submission count
+  setStatValue('stat-submissions', '—');
+}
+
+function animateStat(id, target) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (target === 0) { el.textContent = '0'; return; }
+
+  let current = 0;
+  const step = Math.max(1, Math.floor(target / 20));
+  const interval = setInterval(() => {
+    current += step;
+    if (current >= target) {
+      current = target;
+      clearInterval(interval);
+    }
+    el.textContent = current;
+  }, 30);
 }
 
 function setStatValue(id, value) {
@@ -166,33 +223,17 @@ function setStatValue(id, value) {
   if (el) el.textContent = value;
 }
 
-async function handleRebuild() {
-  const btn = document.getElementById('btn-rebuild');
-  if (!btn) return;
-
-  btn.classList.add('loading');
-  btn.disabled = true;
-
-  try {
-    await api('/api/admin/rebuild', { method: 'POST' });
-    toast('Site rebuild triggered successfully!', 'success');
-  } catch (err) {
-    toast('Rebuild failed: ' + err.message, 'error');
-  } finally {
-    btn.classList.remove('loading');
-    btn.disabled = false;
-  }
-}
-
 // ---- Products ----
 let allProducts = [];
 let currentProduct = null;
+let categorySet = new Set();
 
 async function initProducts() {
   const user = await requireAuth();
   if (!user) return;
 
   initLogout();
+  initRebuild();
   await loadProductList();
   initProductSearch();
   initEditorTabs();
@@ -208,15 +249,68 @@ async function loadProductList() {
   try {
     const data = await api('/api/admin/products');
     allProducts = data.products || [];
+
+    // Update count
+    const countEl = document.getElementById('product-count');
+    if (countEl) countEl.textContent = allProducts.length;
+
+    // Build category filters
+    categorySet = new Set(allProducts.map(p => p.category).filter(Boolean));
+    buildCategoryFilters();
+
     renderProductList(allProducts);
   } catch (err) {
-    listEl.innerHTML = `<li class="product-list-empty">Failed to load products: ${err.message}</li>`;
+    listEl.innerHTML = `<li class="product-list-empty">Failed to load: ${err.message}</li>`;
   }
+}
+
+function buildCategoryFilters() {
+  const bar = document.getElementById('product-filters');
+  if (!bar) return;
+
+  const cats = [...categorySet].sort();
+  bar.innerHTML = `<button class="filter-chip active" data-filter="all">All</button>` +
+    cats.map(c => `<button class="filter-chip" data-filter="${escapeHtml(c)}">${escapeHtml(formatCategory(c))}</button>`).join('');
+
+  bar.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      bar.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      applyFilters();
+    });
+  });
+}
+
+function formatCategory(cat) {
+  return cat.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+}
+
+function applyFilters() {
+  const activeFilter = document.querySelector('.filter-chip.active');
+  const filter = activeFilter ? activeFilter.dataset.filter : 'all';
+  const query = (document.getElementById('product-search')?.value || '').toLowerCase().trim();
+
+  let filtered = allProducts;
+  if (filter !== 'all') {
+    filtered = filtered.filter(p => p.category === filter);
+  }
+  if (query) {
+    filtered = filtered.filter(p =>
+      (p.name && p.name.toLowerCase().includes(query)) ||
+      (p.slug && p.slug.toLowerCase().includes(query)) ||
+      (p.shortName && p.shortName.toLowerCase().includes(query))
+    );
+  }
+  renderProductList(filtered);
 }
 
 function renderProductList(products) {
   const listEl = document.getElementById('product-list');
   if (!listEl) return;
+
+  // Update count for filtered
+  const countEl = document.getElementById('product-count');
+  if (countEl) countEl.textContent = products.length;
 
   if (products.length === 0) {
     listEl.innerHTML = '<li class="product-list-empty">No products found</li>';
@@ -225,11 +319,11 @@ function renderProductList(products) {
 
   listEl.innerHTML = products.map(p => `
     <li class="product-list-item${currentProduct && currentProduct.slug === p.slug ? ' active' : ''}"
-        data-slug="${p.slug}">
-      <div class="product-name">${escapeHtml(p.name)}</div>
+        data-slug="${escapeAttr(p.slug)}">
+      <div class="product-name">${escapeHtml(p.name || p.slug)}</div>
       <div class="product-meta">
-        <span>${escapeHtml(p.category || 'Uncategorized')}</span>
-        <span class="badge ${p.status === 'active' ? 'badge-active' : 'badge-inactive'}">
+        <span>${escapeHtml(formatCategory(p.category || 'uncategorized'))}</span>
+        <span class="badge ${(p.status || 'active') === 'active' ? 'badge-active' : 'badge-inactive'}">
           ${p.status || 'active'}
         </span>
       </div>
@@ -249,20 +343,7 @@ function renderProductList(products) {
 function initProductSearch() {
   const input = document.getElementById('product-search');
   if (!input) return;
-
-  input.addEventListener('input', () => {
-    const q = input.value.toLowerCase().trim();
-    if (!q) {
-      renderProductList(allProducts);
-      return;
-    }
-    const filtered = allProducts.filter(p =>
-      (p.name && p.name.toLowerCase().includes(q)) ||
-      (p.category && p.category.toLowerCase().includes(q)) ||
-      (p.slug && p.slug.toLowerCase().includes(q))
-    );
-    renderProductList(filtered);
-  });
+  input.addEventListener('input', applyFilters);
 }
 
 function selectProduct(product) {
@@ -279,26 +360,50 @@ function selectProduct(product) {
   if (placeholder) placeholder.style.display = 'none';
   if (editor) editor.style.display = 'block';
 
-  // Update editor title
+  // Update editor header
   const titleEl = document.getElementById('editor-title');
-  if (titleEl) titleEl.textContent = product.name;
+  const slugEl = document.getElementById('editor-slug');
+  if (titleEl) titleEl.textContent = product.name || product.slug;
+  if (slugEl) slugEl.textContent = '/' + product.slug;
+
+  // Reset to first tab
+  document.querySelectorAll('.editor-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+  const firstTab = document.querySelector('.editor-tab');
+  const firstPanel = document.getElementById('tab-basic');
+  if (firstTab) firstTab.classList.add('active');
+  if (firstPanel) firstPanel.classList.add('active');
+
+  // Clear save status
+  const statusEl = document.getElementById('save-status');
+  if (statusEl) statusEl.textContent = '';
 
   // Fill form
   fillProductForm(product);
 }
 
 function fillProductForm(p) {
+  // Basic Info
   setFieldValue('field-name', p.name || '');
-  setFieldValue('field-slug', p.slug || '');
+  setFieldValue('field-shortName', p.shortName || '');
   setFieldValue('field-category', p.category || '');
-  setFieldValue('field-subcategory', p.subcategory || '');
   setFieldValue('field-status', p.status || 'active');
+  setFieldValue('field-tagline', p.tagline || '');
   setFieldValue('field-shortDescription', p.shortDescription || '');
-  setFieldValue('field-description', p.description || '');
-  setFieldValue('field-tags', Array.isArray(p.tags) ? p.tags.join(', ') : (p.tags || ''));
-  setFieldValue('field-sku', p.sku || '');
 
-  // Specs tab
+  // Description
+  const desc = p.description || {};
+  if (typeof desc === 'string') {
+    setFieldValue('field-summary', desc);
+    setFieldValue('field-extended', '');
+    setFieldValue('field-features', '');
+  } else {
+    setFieldValue('field-summary', desc.summary || '');
+    setFieldValue('field-extended', desc.extended || '');
+    setFieldValue('field-features', Array.isArray(desc.features) ? desc.features.join('\n') : '');
+  }
+
+  // Specs & Tags
   const specsEl = document.getElementById('field-specs');
   if (specsEl) {
     if (p.specs && typeof p.specs === 'object') {
@@ -308,28 +413,46 @@ function fillProductForm(p) {
     }
   }
 
-  // Images tab
-  const imagesEl = document.getElementById('field-images');
-  if (imagesEl) {
-    const imgs = p.images || [];
-    imagesEl.value = Array.isArray(imgs) ? imgs.join('\n') : '';
+  setFieldValue('field-tags', Array.isArray(p.tags) ? p.tags.join(', ') : (p.tags || ''));
+  setFieldValue('field-machineModels', Array.isArray(p.machineModels) ? p.machineModels.join(', ') : (p.machineModels || ''));
+
+  const partsEl = document.getElementById('field-partNumbers');
+  if (partsEl) {
+    if (p.partNumbers && Array.isArray(p.partNumbers)) {
+      partsEl.value = JSON.stringify(p.partNumbers, null, 2);
+    } else {
+      partsEl.value = '';
+    }
   }
 
-  // PDFs tab
+  // Media
+  const images = p.images || {};
+  setFieldValue('field-mainImage', typeof images === 'string' ? images : (images.main || ''));
+  const gallery = images.gallery || [];
+  setFieldValue('field-gallery', Array.isArray(gallery) ? gallery.join('\n') : '');
+
+  const pdfs = p.pdfs || p.documents || [];
   const pdfsEl = document.getElementById('field-pdfs');
   if (pdfsEl) {
-    const pdfs = p.pdfs || p.documents || [];
     if (Array.isArray(pdfs)) {
-      pdfsEl.value = pdfs.map(d => typeof d === 'string' ? d : `${d.name || ''}|${d.url || ''}`).join('\n');
+      pdfsEl.value = pdfs.map(d => typeof d === 'string' ? d : `${d.name || ''}|${d.file || d.url || ''}`).join('\n');
     } else {
       pdfsEl.value = '';
     }
   }
+
+  const videos = p.videos || [];
+  setFieldValue('field-videos', Array.isArray(videos) ? videos.join('\n') : '');
 }
 
 function setFieldValue(id, value) {
   const el = document.getElementById(id);
   if (el) el.value = value;
+}
+
+function getFieldValue(id) {
+  const el = document.getElementById(id);
+  return el ? el.value : '';
 }
 
 function initEditorTabs() {
@@ -355,20 +478,27 @@ function initProductForm() {
     e.preventDefault();
     if (!currentProduct) return;
 
-    const btn = form.querySelector('.btn-save');
+    const btn = form.querySelector('.btn-primary');
     btn.classList.add('loading');
     btn.disabled = true;
 
+    const statusEl = document.getElementById('save-status');
+    if (statusEl) statusEl.textContent = 'Saving...';
+
     const payload = {
       name: getFieldValue('field-name'),
-      slug: getFieldValue('field-slug'),
+      shortName: getFieldValue('field-shortName'),
       category: getFieldValue('field-category'),
-      subcategory: getFieldValue('field-subcategory'),
       status: getFieldValue('field-status'),
+      tagline: getFieldValue('field-tagline'),
       shortDescription: getFieldValue('field-shortDescription'),
-      description: getFieldValue('field-description'),
-      tags: getFieldValue('field-tags').split(',').map(t => t.trim()).filter(Boolean),
-      sku: getFieldValue('field-sku'),
+    };
+
+    // Description
+    payload.description = {
+      summary: getFieldValue('field-summary'),
+      extended: getFieldValue('field-extended'),
+      features: getFieldValue('field-features').split('\n').map(s => s.trim()).filter(Boolean),
     };
 
     // Specs
@@ -380,34 +510,55 @@ function initProductForm() {
         toast('Invalid JSON in Specs field', 'error');
         btn.classList.remove('loading');
         btn.disabled = false;
+        if (statusEl) statusEl.textContent = 'Fix errors and try again';
         return;
       }
     }
 
-    // Images
-    const imagesRaw = getFieldValue('field-images');
-    if (imagesRaw.trim()) {
-      payload.images = imagesRaw.split('\n').map(s => s.trim()).filter(Boolean);
+    // Tags
+    payload.tags = getFieldValue('field-tags').split(',').map(t => t.trim()).filter(Boolean);
+    payload.machineModels = getFieldValue('field-machineModels').split(',').map(t => t.trim()).filter(Boolean);
+
+    // Part Numbers
+    const partsRaw = getFieldValue('field-partNumbers');
+    if (partsRaw.trim()) {
+      try {
+        payload.partNumbers = JSON.parse(partsRaw);
+      } catch {
+        toast('Invalid JSON in Part Numbers field', 'error');
+        btn.classList.remove('loading');
+        btn.disabled = false;
+        if (statusEl) statusEl.textContent = 'Fix errors and try again';
+        return;
+      }
     }
 
-    // PDFs
+    // Media
+    payload.images = {
+      main: getFieldValue('field-mainImage'),
+      gallery: getFieldValue('field-gallery').split('\n').map(s => s.trim()).filter(Boolean),
+    };
+
     const pdfsRaw = getFieldValue('field-pdfs');
     if (pdfsRaw.trim()) {
       payload.pdfs = pdfsRaw.split('\n').map(line => {
         const parts = line.trim().split('|');
         if (parts.length >= 2) {
-          return { name: parts[0].trim(), url: parts[1].trim() };
+          return { name: parts[0].trim(), file: parts[1].trim() };
         }
-        return { name: '', url: parts[0].trim() };
-      }).filter(d => d.url);
+        return { name: '', file: parts[0].trim() };
+      }).filter(d => d.file);
     }
+
+    payload.videos = getFieldValue('field-videos').split('\n').map(s => s.trim()).filter(Boolean);
 
     try {
       await api(`/api/admin/products/${currentProduct.slug}`, {
         method: 'PUT',
         body: JSON.stringify(payload),
       });
-      toast('Product saved successfully!', 'success');
+      toast('Product saved!', 'success');
+      if (statusEl) statusEl.textContent = 'Saved just now';
 
       // Update local data
       const idx = allProducts.findIndex(p => p.slug === currentProduct.slug);
@@ -418,6 +569,7 @@ function initProductForm() {
       }
     } catch (err) {
       toast('Save failed: ' + err.message, 'error');
+      if (statusEl) statusEl.textContent = 'Save failed';
     } finally {
       btn.classList.remove('loading');
       btn.disabled = false;
@@ -425,16 +577,147 @@ function initProductForm() {
   });
 }
 
-function getFieldValue(id) {
-  const el = document.getElementById(id);
-  return el ? el.value : '';
+// ---- Submissions ----
+async function initSubmissions() {
+  const user = await requireAuth();
+  if (!user) return;
+
+  initLogout();
+  initRebuild();
+  loadSubmissions();
+
+  const refreshBtn = document.getElementById('btn-refresh');
+  if (refreshBtn) {
+    refreshBtn.addEventListener('click', loadSubmissions);
+  }
+
+  // Modal close
+  const modalClose = document.getElementById('modal-close');
+  const modal = document.getElementById('submission-modal');
+  if (modalClose && modal) {
+    modalClose.addEventListener('click', () => modal.classList.remove('visible'));
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('visible');
+    });
+  }
+}
+
+async function loadSubmissions() {
+  const container = document.getElementById('submissions-container');
+  if (!container) return;
+
+  container.innerHTML = `<div class="empty-state"><p>Loading submissions...</p></div>`;
+
+  try {
+    // Try to fetch submissions from the admin API
+    const data = await api('/api/admin/submissions');
+    const submissions = data.submissions || [];
+
+    if (submissions.length === 0) {
+      container.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">&#9993;</div>
+          <p>No submissions yet. Contact form submissions from the website will appear here.</p>
+        </div>`;
+      return;
+    }
+
+    renderSubmissions(container, submissions);
+  } catch (err) {
+    // If submissions endpoint doesn't exist yet, show a friendly message
+    container.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">&#9993;</div>
+        <p>Submissions viewer ready. Form submissions will appear here once the contact form is configured.</p>
+      </div>`;
+  }
+}
+
+function renderSubmissions(container, submissions) {
+  container.innerHTML = `
+    <table class="submissions-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Subject</th>
+          <th>Date</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        ${submissions.map(s => `
+          <tr data-id="${escapeAttr(s.id || '')}">
+            <td>
+              <span class="sub-name">${escapeHtml((s.firstName || '') + ' ' + (s.lastName || ''))}</span>
+              <br><span class="sub-company">${escapeHtml(s.company || '')}</span>
+            </td>
+            <td>${escapeHtml(s.email || '')}</td>
+            <td>${escapeHtml(s.subject || 'General')}</td>
+            <td><span class="sub-date">${formatDate(s.submittedAt || s.timestamp)}</span></td>
+            <td><button class="btn btn-outline btn-sm view-sub" data-id="${escapeAttr(s.id || '')}">View</button></td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>`;
+
+  container.querySelectorAll('.view-sub').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.id;
+      const sub = submissions.find(s => (s.id || '') === id);
+      if (sub) showSubmissionDetail(sub);
+    });
+  });
+}
+
+function showSubmissionDetail(sub) {
+  const modal = document.getElementById('submission-modal');
+  const body = document.getElementById('modal-body');
+  if (!modal || !body) return;
+
+  const fields = [
+    ['Name', (sub.firstName || '') + ' ' + (sub.lastName || '')],
+    ['Email', sub.email || ''],
+    ['Phone', sub.phone || ''],
+    ['Company', sub.company || ''],
+    ['Website', sub.website || ''],
+    ['Subject', sub.subject || 'General'],
+    ['Products', Array.isArray(sub.products) ? sub.products.join(', ') : (sub.products || '')],
+    ['Message', sub.message || ''],
+    ['Date', formatDate(sub.submittedAt || sub.timestamp)],
+  ].filter(([, v]) => v);
+
+  body.innerHTML = fields.map(([label, value]) => `
+    <div class="detail-row">
+      <div class="detail-label">${label}</div>
+      <div class="detail-value">${escapeHtml(value)}</div>
+    </div>
+  `).join('');
+
+  modal.classList.add('visible');
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return '—';
+  try {
+    const d = new Date(dateStr);
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  } catch {
+    return dateStr;
+  }
 }
 
 // ---- Utilities ----
 function escapeHtml(str) {
+  if (!str) return '';
   const div = document.createElement('div');
   div.textContent = str;
   return div.innerHTML;
+}
+
+function escapeAttr(str) {
+  if (!str) return '';
+  return str.replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
 // ---- Page Init ----
@@ -449,6 +732,9 @@ document.addEventListener('DOMContentLoaded', () => {
       break;
     case 'products':
       initProducts();
+      break;
+    case 'submissions':
+      initSubmissions();
       break;
   }
 });

@@ -14,11 +14,12 @@
   <!-- Header -->
   <header class="admin-header">
     <div class="header-left">
-      <h1>EcoPro USA &mdash; Admin Panel</h1>
+      <h1>EcoPro USA</h1>
     </div>
     <div class="header-right">
+      <a href="https://ecopro.keelanodoherty.org" target="_blank" class="view-site-link">&#8599; View Site</a>
       <span class="user-email">loading...</span>
-      <button class="btn-logout">Logout</button>
+      <button class="btn-logout">Sign Out</button>
     </div>
   </header>
 
@@ -28,58 +29,115 @@
       <li class="nav-section">Content</li>
       <li><a href="dashboard.html" class="active"><span class="nav-icon">&#9632;</span> Dashboard</a></li>
       <li><a href="products.html"><span class="nav-icon">&#9776;</span> Products</a></li>
-      <li><a href="#"><span class="nav-icon">&#9998;</span> Articles <span class="nav-badge">Soon</span></a></li>
-      <li><a href="#"><span class="nav-icon">&#128247;</span> Media <span class="nav-badge">Soon</span></a></li>
-      <li class="nav-section">System</li>
-      <li><a href="#"><span class="nav-icon">&#9881;</span> Settings <span class="nav-badge">Soon</span></a></li>
+      <li><a href="submissions.html"><span class="nav-icon">&#9993;</span> Submissions</a></li>
+      <li class="nav-section">Tools</li>
+      <li><a href="#" id="nav-rebuild"><span class="nav-icon">&#8635;</span> Rebuild Site</a></li>
     </ul>
+    <div class="sidebar-footer">
+      <small>EcoPro Admin v1.0</small>
+    </div>
   </nav>
 
   <!-- Main Content -->
   <main class="admin-main">
-    <h2 class="page-title">Dashboard</h2>
+
+    <!-- Welcome Banner -->
+    <div class="welcome-banner">
+      <h2 id="welcome-msg">Welcome back</h2>
+      <p>Manage your products, view form submissions, and keep your site up to date.</p>
+      <div class="welcome-actions">
+        <a href="products.html" class="btn btn-primary btn-sm">Manage Products</a>
+        <a href="submissions.html" class="btn btn-sm" style="background:rgba(255,255,255,0.15);color:#fff;">View Submissions</a>
+      </div>
+    </div>
 
     <!-- Stats -->
     <div class="stats-grid">
       <div class="stat-card">
-        <span class="stat-icon">&#128230;</span>
-        <div class="stat-label">Total Products</div>
-        <div class="stat-value" id="stat-total">&mdash;</div>
+        <div class="stat-icon-wrap blue">&#128230;</div>
+        <div class="stat-info">
+          <div class="stat-label">Total Products</div>
+          <div class="stat-value" id="stat-total">&mdash;</div>
+        </div>
       </div>
       <div class="stat-card">
-        <span class="stat-icon">&#10003;</span>
-        <div class="stat-label">Active Products</div>
-        <div class="stat-value" id="stat-active">&mdash;</div>
+        <div class="stat-icon-wrap green">&#10003;</div>
+        <div class="stat-info">
+          <div class="stat-label">Active</div>
+          <div class="stat-value" id="stat-active">&mdash;</div>
+        </div>
       </div>
       <div class="stat-card">
-        <span class="stat-icon">&#128193;</span>
-        <div class="stat-label">Categories</div>
-        <div class="stat-value" id="stat-categories">&mdash;</div>
+        <div class="stat-icon-wrap amber">&#128193;</div>
+        <div class="stat-info">
+          <div class="stat-label">Categories</div>
+          <div class="stat-value" id="stat-categories">&mdash;</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon-wrap navy">&#9993;</div>
+        <div class="stat-info">
+          <div class="stat-label">Submissions</div>
+          <div class="stat-value" id="stat-submissions">&mdash;</div>
+        </div>
       </div>
     </div>
 
-    <!-- Quick Actions -->
-    <div class="card">
-      <div class="card-header">
-        <h3>Quick Actions</h3>
+    <!-- Dashboard Grid -->
+    <div class="dashboard-grid">
+      <!-- Quick Actions -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Quick Actions</h3>
+        </div>
+        <div class="quick-actions">
+          <a href="products.html" class="btn btn-navy btn-sm">Edit Products</a>
+          <a href="submissions.html" class="btn btn-outline btn-sm">View Submissions</a>
+          <button id="btn-rebuild" class="btn btn-primary btn-sm">
+            <span class="spinner"></span>
+            <span class="btn-text">Rebuild Site</span>
+          </button>
+        </div>
       </div>
-      <div class="quick-actions">
-        <a href="products.html" class="btn btn-navy">
-          <span class="btn-text">Edit Products</span>
-        </a>
-        <button id="btn-rebuild" class="btn btn-primary">
-          <span class="spinner"></span>
-          <span class="btn-text">Rebuild Site</span>
-        </button>
+
+      <!-- Recent Submissions -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Recent Submissions</h3>
+          <a href="submissions.html" style="font-size:12px;font-weight:600;">View All &#8594;</a>
+        </div>
+        <div class="card-body-flush" id="recent-submissions">
+          <div class="empty-state">
+            <div class="empty-icon">&#9993;</div>
+            <p>No submissions yet. Form submissions from the website will appear here.</p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Recent Activity -->
-    <div class="card">
-      <div class="card-header">
-        <h3>Recent Activity</h3>
+    <!-- Site Info -->
+    <div class="card" style="margin-top:0">
+      <div class="card-header"><h3>Site Information</h3></div>
+      <div class="card-body">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:var(--color-gray-500);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px;">Live URL</div>
+            <div style="font-size:14px;"><a href="https://ecopro.keelanodoherty.org" target="_blank">ecopro.keelanodoherty.org</a></div>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:600;color:var(--color-gray-500);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px;">Status</div>
+            <div style="font-size:14px;"><span class="badge badge-active">Demo</span></div>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:600;color:var(--color-gray-500);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px;">Platform</div>
+            <div style="font-size:14px;">Cloudflare Pages</div>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:600;color:var(--color-gray-500);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px;">Contact Form</div>
+            <div style="font-size:14px;">Active (KV Storage)</div>
+          </div>
+        </div>
       </div>
-      <p style="color: var(--color-gray-400); font-size: 14px;">Activity log coming soon. Product edits and rebuilds will appear here.</p>
     </div>
   </main>
 

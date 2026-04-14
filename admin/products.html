@@ -14,11 +14,12 @@
   <!-- Header -->
   <header class="admin-header">
     <div class="header-left">
-      <h1>EcoPro USA &mdash; Admin Panel</h1>
+      <h1>EcoPro USA</h1>
     </div>
     <div class="header-right">
+      <a href="https://ecopro.keelanodoherty.org" target="_blank" class="view-site-link">&#8599; View Site</a>
       <span class="user-email">loading...</span>
-      <button class="btn-logout">Logout</button>
+      <button class="btn-logout">Sign Out</button>
     </div>
   </header>
 
@@ -28,25 +29,39 @@
       <li class="nav-section">Content</li>
       <li><a href="dashboard.html"><span class="nav-icon">&#9632;</span> Dashboard</a></li>
       <li><a href="products.html" class="active"><span class="nav-icon">&#9776;</span> Products</a></li>
-      <li><a href="#"><span class="nav-icon">&#9998;</span> Articles <span class="nav-badge">Soon</span></a></li>
-      <li><a href="#"><span class="nav-icon">&#128247;</span> Media <span class="nav-badge">Soon</span></a></li>
-      <li class="nav-section">System</li>
-      <li><a href="#"><span class="nav-icon">&#9881;</span> Settings <span class="nav-badge">Soon</span></a></li>
+      <li><a href="submissions.html"><span class="nav-icon">&#9993;</span> Submissions</a></li>
+      <li class="nav-section">Tools</li>
+      <li><a href="#" id="nav-rebuild"><span class="nav-icon">&#8635;</span> Rebuild Site</a></li>
     </ul>
+    <div class="sidebar-footer">
+      <small>EcoPro Admin v1.0</small>
+    </div>
   </nav>
 
   <!-- Main Content -->
   <main class="admin-main">
-    <h2 class="page-title">Products</h2>
+    <div class="page-header">
+      <div>
+        <h2 class="page-title">Products</h2>
+        <p class="page-subtitle">Manage your product catalog</p>
+      </div>
+    </div>
 
     <div class="products-layout">
       <!-- Product List Panel -->
       <div class="product-list-panel">
+        <div class="product-list-header">
+          <h3>All Products</h3>
+          <span class="product-count" id="product-count">0</span>
+        </div>
         <div class="product-search">
           <input type="text" id="product-search" placeholder="Search products...">
         </div>
+        <div class="product-filter-bar" id="product-filters">
+          <button class="filter-chip active" data-filter="all">All</button>
+        </div>
         <ul class="product-list" id="product-list">
-          <li class="product-list-empty">Loading...</li>
+          <li class="product-list-empty">Loading products...</li>
         </ul>
       </div>
 
@@ -55,22 +70,22 @@
         <!-- Placeholder when nothing selected -->
         <div id="editor-placeholder" class="editor-placeholder">
           <div class="icon">&#128221;</div>
-          <p>Select a product from the list to edit</p>
+          <p>Select a product from the list to view and edit its details</p>
         </div>
 
         <!-- Editor (hidden until product selected) -->
         <div id="editor-form-area" style="display: none;">
           <div class="editor-header">
             <h3 id="editor-title">Product Name</h3>
+            <span class="editor-slug" id="editor-slug"></span>
           </div>
 
           <!-- Tabs -->
           <div class="editor-tabs">
             <button class="editor-tab active" data-tab="basic">Basic Info</button>
             <button class="editor-tab" data-tab="description">Description</button>
-            <button class="editor-tab" data-tab="specs">Specs</button>
-            <button class="editor-tab" data-tab="images">Images</button>
-            <button class="editor-tab" data-tab="pdfs">PDFs</button>
+            <button class="editor-tab" data-tab="specs">Specs &amp; Tags</button>
+            <button class="editor-tab" data-tab="media">Media</button>
           </div>
 
           <form id="product-form">
@@ -82,80 +97,110 @@
                   <input type="text" id="field-name" required>
                 </div>
                 <div class="form-group">
-                  <label for="field-slug">Slug</label>
-                  <input type="text" id="field-slug" readonly style="background: var(--color-gray-50); color: var(--color-gray-500);">
+                  <label for="field-shortName">Short Name</label>
+                  <input type="text" id="field-shortName" placeholder="e.g. Turbo II HD">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group">
                   <label for="field-category">Category</label>
-                  <input type="text" id="field-category">
+                  <select id="field-category">
+                    <option value="">Select category...</option>
+                    <option value="air-filtration">Air Filtration</option>
+                    <option value="cabin-air">Cabin Air</option>
+                    <option value="lighting">Lighting</option>
+                    <option value="jump-starters">Jump Starters</option>
+                    <option value="desiccant-breathers">Desiccant Breathers</option>
+                    <option value="adapters">Adapters</option>
+                    <option value="ez3-kits">EZ3 Kits</option>
+                  </select>
                 </div>
-                <div class="form-group">
-                  <label for="field-subcategory">Subcategory</label>
-                  <input type="text" id="field-subcategory">
-                </div>
-              </div>
-              <div class="form-row">
                 <div class="form-group">
                   <label for="field-status">Status</label>
                   <select id="field-status">
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>
+                    <option value="discontinued">Discontinued</option>
                   </select>
-                </div>
-                <div class="form-group">
-                  <label for="field-sku">SKU</label>
-                  <input type="text" id="field-sku">
                 </div>
               </div>
               <div class="form-group">
-                <label for="field-tags">Tags (comma-separated)</label>
-                <input type="text" id="field-tags" placeholder="eco-friendly, industrial, coating">
+                <label for="field-tagline">Tagline</label>
+                <input type="text" id="field-tagline" placeholder="Brief product tagline">
               </div>
               <div class="form-group">
                 <label for="field-shortDescription">Short Description</label>
-                <input type="text" id="field-shortDescription">
+                <textarea id="field-shortDescription" rows="3" placeholder="Brief description for product cards"></textarea>
               </div>
             </div>
 
             <!-- Description Tab -->
             <div class="tab-content" id="tab-description">
               <div class="form-group">
-                <label for="field-description">Full Description</label>
-                <textarea id="field-description" rows="16"></textarea>
+                <label for="field-summary">Summary</label>
+                <textarea id="field-summary" rows="4" placeholder="Product summary paragraph"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="field-extended">Extended Description</label>
+                <textarea id="field-extended" rows="10" placeholder="Full product description with details"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="field-features">Key Features (one per line)</label>
+                <textarea id="field-features" rows="6" placeholder="Removes 80-90% of debris before the filter&#10;Extends primary filter life 3-5x&#10;No moving parts to wear out"></textarea>
               </div>
             </div>
 
-            <!-- Specs Tab -->
+            <!-- Specs & Tags Tab -->
             <div class="tab-content" id="tab-specs">
               <div class="form-group">
                 <label for="field-specs">Specifications (JSON)</label>
-                <textarea id="field-specs" rows="16" placeholder='{ "weight": "5 lbs", "coverage": "200 sq ft" }'></textarea>
+                <textarea id="field-specs" rows="8" placeholder='[{"label": "Filtration", "value": "80-90%"}]'></textarea>
+                <span class="form-hint">Array of {label, value} pairs</span>
               </div>
-            </div>
-
-            <!-- Images Tab -->
-            <div class="tab-content" id="tab-images">
+              <hr class="form-divider">
               <div class="form-group">
-                <label for="field-images">Image URLs (one per line)</label>
-                <textarea id="field-images" rows="10" placeholder="https://example.com/image1.jpg"></textarea>
+                <label for="field-tags">Tags (comma-separated)</label>
+                <input type="text" id="field-tags" placeholder="dozer, loader, excavator">
+                <span class="form-hint">Machine types this product applies to</span>
               </div>
-            </div>
-
-            <!-- PDFs Tab -->
-            <div class="tab-content" id="tab-pdfs">
               <div class="form-group">
-                <label for="field-pdfs">Documents (one per line, format: Name|URL)</label>
-                <textarea id="field-pdfs" rows="10" placeholder="Safety Data Sheet|https://example.com/sds.pdf"></textarea>
+                <label for="field-machineModels">Machine Models (comma-separated)</label>
+                <input type="text" id="field-machineModels" placeholder="D6T, D8T, 966, 972">
+              </div>
+              <div class="form-group">
+                <label for="field-partNumbers">Part Numbers (JSON)</label>
+                <textarea id="field-partNumbers" rows="6" placeholder='[{"snp": "60m06", "description": "6\" Model"}]'></textarea>
+                <span class="form-hint">Array of {snp, description, price} objects</span>
               </div>
             </div>
 
-            <!-- Save Button (always visible) -->
-            <div style="padding: 0 24px 24px;">
-              <button type="submit" class="btn btn-primary btn-save">
+            <!-- Media Tab -->
+            <div class="tab-content" id="tab-media">
+              <div class="form-group">
+                <label for="field-mainImage">Main Image Path</label>
+                <input type="text" id="field-mainImage" placeholder="images/products/turbo-ii-hd/main.png">
+              </div>
+              <div class="form-group">
+                <label for="field-gallery">Gallery Images (one path per line)</label>
+                <textarea id="field-gallery" rows="5" placeholder="images/products/turbo-ii-hd/gallery-1.jpg&#10;images/products/turbo-ii-hd/gallery-2.jpg"></textarea>
+              </div>
+              <hr class="form-divider">
+              <div class="form-group">
+                <label for="field-pdfs">Documents (one per line, format: Name|Path)</label>
+                <textarea id="field-pdfs" rows="5" placeholder="Product Info Sheet|pdfs/turbo-ii/T2-Info.pdf&#10;Installation Guide|pdfs/turbo-ii/T2-Install.pdf"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="field-videos">Video URLs (one per line)</label>
+                <textarea id="field-videos" rows="3" placeholder="https://youtube.com/watch?v=..."></textarea>
+              </div>
+            </div>
+
+            <!-- Save Footer -->
+            <div class="editor-footer">
+              <span class="save-status" id="save-status"></span>
+              <button type="submit" class="btn btn-primary">
                 <span class="spinner"></span>
-                <span class="btn-text">Save Product</span>
+                <span class="btn-text">Save Changes</span>
               </button>
             </div>
           </form>
