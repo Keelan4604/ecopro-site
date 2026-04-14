@@ -3,14 +3,13 @@ main = "src/index.js"
 compatibility_date = "2024-09-01"
 
 [vars]
-ALLOWED_ORIGIN = "https://ecoprousa.com"
+ALLOWED_ORIGIN = "https://ecopro.keelanodoherty.org"
 FROM_EMAIL = "noreply@ecoprousa.com"
 FROM_NAME = "EcoPro USA Website"
 
-# Uncomment and configure after deploying:
-# [[kv_namespaces]]
-# binding = "SUBMISSIONS"
-# id = "<your-kv-namespace-id>"
+[[kv_namespaces]]
+binding = "SUBMISSIONS"
+id = "4540efcaee8e4fdfae18343ba4cc9fcd"
 
 # Add these secrets via `wrangler secret put`:
 # RESEND_API_KEY — Resend.com API key for sending emails

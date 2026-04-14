@@ -12,13 +12,16 @@
  */
 
 // Email routing by subject/department
+// TODO: Switch to department-specific emails when ready for production
+// sales@ecoprousa.com, technical@ecoprousa.com, customerservice@ecoprousa.com,
+// accounting@ecoprousa.com, controller@ecoprousa.com
 const EMAIL_ROUTING = {
-  quote:     'sales@ecoprousa.com',
-  product:   'sales@ecoprousa.com',
-  technical: 'technical@ecoprousa.com',
-  order:     'customerservice@ecoprousa.com',
-  billing:   'accounting@ecoprousa.com',
-  other:     'controller@ecoprousa.com',
+  quote:     'keelan4604@gmail.com',
+  product:   'keelan4604@gmail.com',
+  technical: 'keelan4604@gmail.com',
+  order:     'keelan4604@gmail.com',
+  billing:   'keelan4604@gmail.com',
+  other:     'keelan4604@gmail.com',
 };
 
 const SUBJECT_LABELS = {

@@ -600,7 +600,7 @@ for (const page of pages) {
     logoUrl: page.rootPath || './',
     navItems: buildNavItems(page.activeNav, page.rootPath),
     company,
-    contactFormUrl: '/api/contact',
+    contactFormUrl: 'https://ecopro-contact-form.keelan4604.workers.dev',
     currentYear,
     clients: testimonials.clients,
     footerProducts: footerProducts.map(fp => ({ ...fp, url: page.rootPath + fp.url.replace(/^\//, '') })),
