@@ -1,5 +1,6 @@
 import { createToken, verifyToken, verifyPassword, hashPassword } from './auth.js';
 import { getUser, setUser, getProducts, getProduct, updateProduct } from './storage.js';
+import { handleChatMessage, handleChatHistory, handleChatClear } from './chat.js';
 
 // --- Helpers ---
 
@@ -290,6 +291,12 @@ function matchRoute(method, pathname) {
   }
   // GET /api/admin/submissions
   if (method === 'GET' && pathname === '/api/admin/submissions') return { handler: 'listSubmissions' };
+  // POST /api/admin/chat
+  if (method === 'POST' && pathname === '/api/admin/chat') return { handler: 'chat' };
+  // GET /api/admin/chat/history
+  if (method === 'GET' && pathname === '/api/admin/chat/history') return { handler: 'chatHistory' };
+  // DELETE /api/admin/chat/history
+  if (method === 'DELETE' && pathname === '/api/admin/chat/history') return { handler: 'chatClear' };
   // POST /api/admin/rebuild
   if (method === 'POST' && pathname === '/api/admin/rebuild') return { handler: 'rebuild' };
   // POST /api/admin/setup
@@ -342,6 +349,31 @@ export default {
         case 'listSubmissions':
           response = await handleGetSubmissions(request, env);
           break;
+        case 'chat': {
+          const chatAuth = await requireAuth(request, env);
+          if (!chatAuth) { response = errorResponse('Unauthorized', 401); break; }
+          try {
+            const chatResult = await handleChatMessage(request, env, chatAuth.sub);
+            response = jsonResponse(chatResult);
+          } catch (err) {
+            response = errorResponse(err.message, 500);
+          }
+          break;
+        }
+        case 'chatHistory': {
+          const histAuth = await requireAuth(request, env);
+          if (!histAuth) { response = errorResponse('Unauthorized', 401); break; }
+          const histResult = await handleChatHistory(env, histAuth.sub);
+          response = jsonResponse(histResult);
+          break;
+        }
+        case 'chatClear': {
+          const clrAuth = await requireAuth(request, env);
+          if (!clrAuth) { response = errorResponse('Unauthorized', 401); break; }
+          const clrResult = await handleChatClear(env, clrAuth.sub);
+          response = jsonResponse(clrResult);
+          break;
+        }
         case 'rebuild':
           response = await handleRebuild(request, env);
           break;

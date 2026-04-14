@@ -707,6 +707,240 @@ function formatDate(dateStr) {
   }
 }
 
+// ---- Chat ----
+let chatSending = false;
+
+async function initChat() {
+  const user = await requireAuth();
+  if (!user) return;
+
+  initLogout();
+  initRebuild();
+
+  const form = document.getElementById('chat-form');
+  const input = document.getElementById('chat-input');
+  const sendBtn = document.getElementById('chat-send');
+  const clearBtn = document.getElementById('btn-clear-chat');
+
+  // Load existing history
+  await loadChatHistory();
+
+  // Auto-resize textarea
+  input.addEventListener('input', () => {
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 120) + 'px';
+  });
+
+  // Enter to send, Shift+Enter for newline
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      form.dispatchEvent(new Event('submit'));
+    }
+  });
+
+  // Send message
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const msg = input.value.trim();
+    if (!msg || chatSending) return;
+
+    chatSending = true;
+    sendBtn.disabled = true;
+
+    // Hide welcome if visible
+    const welcome = document.getElementById('chat-welcome');
+    if (welcome) welcome.remove();
+
+    // Add user message
+    addChatMessage('user', msg);
+    input.value = '';
+    input.style.height = 'auto';
+
+    // Show typing indicator
+    showTypingIndicator();
+
+    try {
+      const data = await api('/api/admin/chat', {
+        method: 'POST',
+        body: JSON.stringify({ message: msg }),
+      });
+
+      removeTypingIndicator();
+      addChatMessage('assistant', data.response, data.toolsUsed);
+    } catch (err) {
+      removeTypingIndicator();
+      addChatError('Failed to get response: ' + err.message);
+    } finally {
+      chatSending = false;
+      sendBtn.disabled = false;
+      input.focus();
+    }
+  });
+
+  // Suggestion chips
+  document.querySelectorAll('.suggestion-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      input.value = chip.dataset.msg;
+      form.dispatchEvent(new Event('submit'));
+    });
+  });
+
+  // Clear chat
+  if (clearBtn) {
+    clearBtn.addEventListener('click', async () => {
+      try {
+        await api('/api/admin/chat/history', { method: 'DELETE' });
+        const messages = document.getElementById('chat-messages');
+        messages.innerHTML = `
+          <div class="chat-welcome" id="chat-welcome">
+            <div class="chat-welcome-icon">&#9883;</div>
+            <h3>EcoPro AI Assistant</h3>
+            <p>I can help you manage your website. Try asking me things like:</p>
+            <div class="chat-suggestions">
+              <button class="suggestion-chip" data-msg="Show me all products in the lighting category">Show lighting products</button>
+              <button class="suggestion-chip" data-msg="What are the details of the Turbo II HD?">Turbo II HD details</button>
+              <button class="suggestion-chip" data-msg="Are there any new contact form submissions?">Check submissions</button>
+              <button class="suggestion-chip" data-msg="Update the CCAP tagline to: Breathe easy with 200x cleaner air">Update a product</button>
+            </div>
+          </div>`;
+        // Re-bind chips
+        messages.querySelectorAll('.suggestion-chip').forEach(chip => {
+          chip.addEventListener('click', () => {
+            input.value = chip.dataset.msg;
+            form.dispatchEvent(new Event('submit'));
+          });
+        });
+        toast('Chat cleared', 'success');
+      } catch (err) {
+        toast('Failed to clear chat: ' + err.message, 'error');
+      }
+    });
+  }
+}
+
+async function loadChatHistory() {
+  try {
+    const data = await api('/api/admin/chat/history');
+    const messages = data.messages || [];
+    if (messages.length === 0) return;
+
+    // Hide welcome
+    const welcome = document.getElementById('chat-welcome');
+    if (welcome) welcome.remove();
+
+    messages.forEach(msg => {
+      addChatMessage(msg.role, msg.text, msg.tools ? msg.tools.map(t => ({ tool: t })) : undefined);
+    });
+  } catch {
+    // No history, that's fine
+  }
+}
+
+function addChatMessage(role, text, toolsUsed) {
+  const container = document.getElementById('chat-messages');
+  if (!container) return;
+
+  const msgEl = document.createElement('div');
+  msgEl.className = `chat-msg ${role}`;
+
+  const avatarLabel = role === 'assistant' ? 'AI' : document.querySelector('.user-email')?.textContent?.charAt(0)?.toUpperCase() || 'U';
+
+  let toolHtml = '';
+  if (toolsUsed && toolsUsed.length > 0) {
+    const toolNames = toolsUsed.map(t => formatToolName(t.tool)).join(', ');
+    toolHtml = `<div class="chat-tool-indicator"><span class="tool-dot"></span> Used: ${toolNames}</div>`;
+  }
+
+  msgEl.innerHTML = `
+    <div class="chat-msg-avatar">${avatarLabel}</div>
+    <div>
+      <div class="chat-msg-bubble">${role === 'user' ? escapeHtml(text) : renderMarkdown(text)}</div>
+      ${toolHtml}
+    </div>
+  `;
+
+  container.appendChild(msgEl);
+  container.scrollTop = container.scrollHeight;
+}
+
+function addChatError(message) {
+  const container = document.getElementById('chat-messages');
+  if (!container) return;
+
+  const el = document.createElement('div');
+  el.className = 'chat-error';
+  el.textContent = message;
+  container.appendChild(el);
+  container.scrollTop = container.scrollHeight;
+}
+
+function showTypingIndicator() {
+  const container = document.getElementById('chat-messages');
+  if (!container) return;
+
+  const el = document.createElement('div');
+  el.className = 'chat-typing';
+  el.id = 'typing-indicator';
+  el.innerHTML = `
+    <div class="chat-msg-avatar">AI</div>
+    <div class="typing-dots"><span></span><span></span><span></span></div>
+  `;
+  container.appendChild(el);
+  container.scrollTop = container.scrollHeight;
+}
+
+function removeTypingIndicator() {
+  const el = document.getElementById('typing-indicator');
+  if (el) el.remove();
+}
+
+function formatToolName(name) {
+  const map = {
+    list_products: 'Listed products',
+    get_product: 'Looked up product',
+    update_product: 'Updated product',
+    list_submissions: 'Checked submissions',
+    trigger_rebuild: 'Triggered rebuild',
+    search_products: 'Searched products',
+  };
+  return map[name] || name;
+}
+
+function renderMarkdown(text) {
+  if (!text) return '';
+  // Simple markdown rendering
+  let html = escapeHtml(text);
+
+  // Bold: **text**
+  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+  // Italic: *text*
+  html = html.replace(/(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)/g, '<em>$1</em>');
+
+  // Inline code: `text`
+  html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+  // Unordered lists: lines starting with - or *
+  html = html.replace(/^[\-\*] (.+)$/gm, '<li>$1</li>');
+  html = html.replace(/(<li>.*<\/li>\n?)+/gs, '<ul>$&</ul>');
+
+  // Numbered lists
+  html = html.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
+
+  // Paragraphs: double newlines
+  html = html.replace(/\n\n/g, '</p><p>');
+  html = '<p>' + html + '</p>';
+
+  // Single newlines within paragraphs
+  html = html.replace(/(?<![>])\n(?![<])/g, '<br>');
+
+  // Clean up empty paragraphs
+  html = html.replace(/<p>\s*<\/p>/g, '');
+
+  return html;
+}
+
 // ---- Utilities ----
 function escapeHtml(str) {
   if (!str) return '';
@@ -735,6 +969,9 @@ document.addEventListener('DOMContentLoaded', () => {
       break;
     case 'submissions':
       initSubmissions();
+      break;
+    case 'chat':
+      initChat();
       break;
   }
 });

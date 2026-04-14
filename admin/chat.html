@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Assistant — EcoPro USA Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body data-page="chat">
+
+  <!-- Header -->
+  <header class="admin-header">
+    <div class="header-left">
+      <h1>EcoPro USA</h1>
+    </div>
+    <div class="header-right">
+      <a href="https://ecopro.keelanodoherty.org" target="_blank" class="view-site-link">&#8599; View Site</a>
+      <span class="user-email">loading...</span>
+      <button class="btn-logout">Sign Out</button>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <nav class="admin-sidebar">
+    <ul class="sidebar-nav">
+      <li class="nav-section">Content</li>
+      <li><a href="dashboard.html"><span class="nav-icon">&#9632;</span> Dashboard</a></li>
+      <li><a href="products.html"><span class="nav-icon">&#9776;</span> Products</a></li>
+      <li><a href="submissions.html"><span class="nav-icon">&#9993;</span> Submissions</a></li>
+      <li class="nav-section">Tools</li>
+      <li><a href="chat.html" class="active"><span class="nav-icon">&#9883;</span> AI Assistant</a></li>
+      <li><a href="#" id="nav-rebuild"><span class="nav-icon">&#8635;</span> Rebuild Site</a></li>
+    </ul>
+    <div class="sidebar-footer">
+      <small>EcoPro Admin v1.0</small>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="admin-main chat-main">
+    <!-- Chat Container -->
+    <div class="chat-container">
+      <!-- Chat Header -->
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <h2>AI Site Assistant</h2>
+          <span class="chat-header-sub">Ask me to update products, check submissions, or manage your site</span>
+        </div>
+        <div class="chat-header-actions">
+          <button class="btn btn-outline btn-sm" id="btn-clear-chat" title="Clear conversation">Clear Chat</button>
+        </div>
+      </div>
+
+      <!-- Messages Area -->
+      <div class="chat-messages" id="chat-messages">
+        <!-- Welcome message -->
+        <div class="chat-welcome" id="chat-welcome">
+          <div class="chat-welcome-icon">&#9883;</div>
+          <h3>EcoPro AI Assistant</h3>
+          <p>I can help you manage your website. Try asking me things like:</p>
+          <div class="chat-suggestions">
+            <button class="suggestion-chip" data-msg="Show me all products in the lighting category">Show lighting products</button>
+            <button class="suggestion-chip" data-msg="What are the details of the Turbo II HD?">Turbo II HD details</button>
+            <button class="suggestion-chip" data-msg="Are there any new contact form submissions?">Check submissions</button>
+            <button class="suggestion-chip" data-msg="Update the CCAP tagline to: Breathe easy with 200x cleaner air">Update a product</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input Area -->
+      <div class="chat-input-area">
+        <form id="chat-form" class="chat-form">
+          <div class="chat-input-wrap">
+            <textarea id="chat-input" placeholder="Ask me to make changes, look up products, check submissions..." rows="1" required></textarea>
+            <button type="submit" class="chat-send-btn" id="chat-send" title="Send message">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </div>
+          <div class="chat-input-hint">
+            <span>Press Enter to send, Shift+Enter for new line</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
