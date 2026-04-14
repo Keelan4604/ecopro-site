@@ -1,0 +1,10 @@
+name = "ecopro-admin-api"
+main = "src/index.js"
+compatibility_date = "2024-09-01"
+
+[vars]
+ALLOWED_ORIGIN = "https://ecopro.keelanodoherty.org"
+
+[[kv_namespaces]]
+binding = "ADMIN_KV"
+id = "" # Will be filled after creation
