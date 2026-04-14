@@ -21,19 +21,25 @@ function getCookie(request, name) {
 }
 
 function setAuthCookie(token, maxAge = 86400) {
-  return `admin_token=${token}; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=${maxAge}`;
+  // SameSite=None required for cross-origin cookies (admin pages on different domain than API)
+  return `admin_token=${token}; HttpOnly; Secure; SameSite=None; Path=/; Max-Age=${maxAge}`;
 }
 
 function clearAuthCookie() {
-  return 'admin_token=; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=0';
+  return 'admin_token=; HttpOnly; Secure; SameSite=None; Path=/; Max-Age=0';
 }
 
-function corsHeaders(env) {
+function corsHeaders(env, request) {
+  const origin = request ? (request.headers.get('Origin') || '') : '';
+  const allowed = (env.ALLOWED_ORIGIN || '').split(',').map(s => s.trim());
+  // Allow the requesting origin if it's in our allowed list, or fall back to first allowed
+  const matchedOrigin = allowed.find(a => a === origin) || allowed[0] || '*';
   return {
-    'Access-Control-Allow-Origin': env.ALLOWED_ORIGIN || '*',
+    'Access-Control-Allow-Origin': matchedOrigin,
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Credentials': 'true',
+    'Access-Control-Max-Age': '86400',
   };
 }
 
@@ -257,7 +263,7 @@ function matchRoute(method, pathname) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    const cors = corsHeaders(env);
+    const cors = corsHeaders(env, request);
 
     // Handle CORS preflight
     if (request.method === 'OPTIONS') {

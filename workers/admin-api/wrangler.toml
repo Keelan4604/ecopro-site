@@ -3,7 +3,7 @@ main = "src/index.js"
 compatibility_date = "2024-09-01"
 
 [vars]
-ALLOWED_ORIGIN = "https://ecopro.keelanodoherty.org"
+ALLOWED_ORIGIN = "https://ecopro.keelanodoherty.org,https://ecopro-site.pages.dev"
 
 [[kv_namespaces]]
 binding = "ADMIN_KV"
