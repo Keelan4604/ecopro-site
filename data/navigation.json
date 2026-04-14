@@ -3,7 +3,6 @@
     { "label": "Home", "url": "/", "id": "home" },
     { "label": "About", "url": "/about/", "id": "about" },
     { "label": "Products", "url": "/products/", "id": "products", "hasDropdown": true },
-    { "label": "Where to Buy", "url": "/where-to-buy/", "id": "where-to-buy" },
     { "label": "Results", "url": "/results/", "id": "results" },
     { "label": "Tech Corner", "url": "/techcorner/", "id": "techcorner" },
     { "label": "Contact", "url": "/contact/", "id": "contact" }
