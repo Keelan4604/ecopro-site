@@ -1,6 +1,11 @@
 name = "ecopro-site"
 compatibility_date = "2026-04-14"
 compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+routes = [
+  { pattern = "ecopro.keelanodoherty.org", custom_domain = true }
+]
 
 [assets]
 directory = "./dist"
