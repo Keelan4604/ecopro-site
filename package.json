@@ -8,9 +8,13 @@
     "build": "node build/build.js",
     "dev": "node build/build.js --watch",
     "serve": "npx serve dist -l 3456",
-    "deploy": "npx wrangler pages deploy dist --project-name=ecopro-site",
-    "download-media": "node build/download-wp-media.js"
+    "deploy": "wrangler deploy",
+    "download-media": "node build/download-wp-media.js",
+    "preview": "wrangler dev"
   },
   "author": "EcoPro USA",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "wrangler": "^4.82.2"
+  }
 }
